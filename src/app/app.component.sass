@@ -8,21 +8,28 @@
 mat-drawer
   padding: 20px 0px
 
+mat-drawer-container
+  background-color: white
+
 .name
   margin-top: 15px
   font-size: 22px
 
-.sidenav-menu
-  
+.sidenav-menu  
   padding:0
+
+  .is-active
+      background-color: rgba(0,0,0,0.05)
 
   .sidenav-button
     color: rgba(0,0,0,0.87)
     display: block
     font-size: 15px
     font-weight: 500    
-    padding: 20px 20px
+    padding: 20px 20px  
 
     &:hover
       background-color: rgba(0,0,0,0.05)
     
+    &:focus-visible
+      outline: none

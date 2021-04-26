@@ -14,19 +14,21 @@
         <hr>
       </div>
       <div class="col s12 sidenav-menu">
-        <a class="sidenav-button">About me </a>
-        <a class="sidenav-button">Carreer</a>             
+        <a class="sidenav-button" routerLink="/about" [routerLinkActive]="['is-active']" (click)="drawer.close()">About me </a>
+        <a class="sidenav-button" routerLink="/career" [routerLinkActive]="['is-active']" (click)="drawer.close()">Career</a>             
         <!-- <a class="sidenav-button hide-on-med-and-up" (click)="drawer.close()">Close menu</a> -->
       </div>      
     </div>
   </mat-drawer>
   <div class="row">
-    <div class="col s12">
+    <div class="col s12 m1 l1">
       <a class="black-text">
         <i class="medium material-icons" (click)="drawer.toggle()">
           menu
         </i>
       </a>
+    </div>
+    <div class="col s12 m11 l11">
       <router-outlet></router-outlet>
     </div>
   </div>
