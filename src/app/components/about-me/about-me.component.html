@@ -1,1 +1,80 @@
-<p>about-me works!</p>
+<div class="hide-on-med-and-up">
+  <div class="col s12 m3 l3 center-align">
+    <img src="assets/img/profile-picture.jpeg" alt="" class="responsive-img circle">
+  </div>
+  <div class="col s12 center-align">    
+    <div class="personal-information">
+      <h1>Matheus Jatczak Bertazzo</h1>
+      <ul>
+        <li>Age: {{myAge}} ({{dateOfBirth.format("MMM Do, yyyy")}})</li>
+        <li>Nationality: Brazilian</li>
+        <li>
+          Email:
+          <a>
+            matheus@matheusbertazzo.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="hide-on-small-only">
+  <div class="col s12 header">
+    <img src="assets/img/profile-picture.jpeg" alt="" class="responsive-img circle">
+    <div class="personal-information">
+      <h1>Matheus Jatczak Bertazzo</h1>
+      <ul>
+        <li>Age: {{myAge}} ({{dateOfBirth.format("MMM Do, yyyy")}})</li>
+        <li>Nationality: Brazilian</li>
+        <li>
+          Email:
+          <a>
+            matheus@matheusbertazzo.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col s12 section">
+  <h1>
+    Hey, I'm Matheus, welcome to my website!
+  </h1>
+  I'm a tech guy who really enjoys what I do for a living, here you'll find a little bit more about myself as well as
+  the projects I worked on,
+  personal interests, my professional experiences, ideias I have in mind (maybe I'll start a blog someday... Wouldn't
+  count on that though) and my contact information.
+</div>
+
+<div class="col s12 section">
+  <h1>Personal interests</h1>
+  Here's a list of the kind of stuff I usually go to for fun
+  <ul>
+    <li>Podcasts</li>
+    <li>Coding</li>
+    <li>Cyber Security</li>
+    <li>Beer</li>
+    <li>Books</li>
+    <li>Cycling</li>
+    <li>Video games</li>
+    <li>Board games</li>
+    <li>Card games</li>
+    <li>Honestly, all kinds of games...</li>
+  </ul>
+</div>
+<div class="col s12 section">
+  <h1>Some technical stuff I happen to know...</h1>
+  <div class="col s12 m12 l6" *ngFor="let technicalKnowledge of technicalStuff">
+    <div class="tech-knowledge-item">
+      <img [src]="technicalKnowledge.emblemSrc">
+      <div class="description">
+        <h1>{{technicalKnowledge.title}}</h1>
+        <ul>
+          <li *ngFor="let description of technicalKnowledge.description">{{description}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
