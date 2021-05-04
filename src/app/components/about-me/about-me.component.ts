@@ -1,102 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { TechnicalKnowledge } from 'src/app/models/TechnicalKnowledge';
 import * as moment from 'moment';
+import { WebSiteContentService } from 'src/app/service/web-site-content.service';
+import { WebsiteContent } from 'src/app/models/WebsiteContent';
 
 @Component({
   selector: 'app-about-me',
   templateUrl: './about-me.component.html',
   styleUrls: ['./about-me.component.sass']
 })
-export class AboutMeComponent implements OnInit {
+export class AboutMeComponent implements OnInit {  
+  dateOfBirth: string;
+  firstName: string;
+  myAge: number;  
+  websiteContent: WebsiteContent;
 
-  
-  dateOfBirth: moment.Moment;
-  myAge: number;
-  technicalStuff: TechnicalKnowledge[] = [];
-
-  constructor() { }
+  constructor(private websiteContentService: WebSiteContentService) { }
 
   ngOnInit(): void {
-    this.dateOfBirth = moment('1994-10-05');
-    this.myAge = moment().diff(this.dateOfBirth, 'years');
-    this.technicalStuff = this.getTechnicalStuff();
-  }
 
-  getTechnicalStuff(): TechnicalKnowledge[]{
-    return [
-      new TechnicalKnowledge({
-        title: '.NET (C#)',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/csharp.svg'
-      }),
-      new TechnicalKnowledge({
-        title: 'HTML5, CSS3, JS...',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/html5.svg'
-      }),
-      new TechnicalKnowledge({
-        title: 'Java',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/java.svg'
-      }),
-      new TechnicalKnowledge({
-        title: 'Containers & Orchestration',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/containers.png'
-      }),
-      new TechnicalKnowledge({
-        title: 'Database Stuff...',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/db.png'
-      }),
-      new TechnicalKnowledge({
-        title: 'Cloud Stuff',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/cloud.png'
-      }),
-      new TechnicalKnowledge({
-        title: 'Agile software development',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/agile.png'
-      }),
-      new TechnicalKnowledge({
-        title: 'Clean code & Best Practices',
-        description: [
-          'blablablablabla',
-          'bla blabla blablabla bla blablabla blablablablabla blablablablablabla',
-          'blablabla',
-        ],
-        emblemSrc: 'assets/img/emblems/cleancode.png'
-      })
-    ];
+    this.websiteContentService.get().subscribe(
+      (content: WebsiteContent) => {        
+        this.websiteContent = content;        
+        this.dateOfBirth = content.personalInformation.dateOfBirth.format("MMM Do, yyyy");
+        this.myAge = moment().diff(content.personalInformation.dateOfBirth, 'years');
+        this.firstName = content.personalInformation.name.split(' ')[0];
+      },
+      (error) => {
+        console.error("Error while getting website content: ", error);
+      }
+    );    
   }
-
 }

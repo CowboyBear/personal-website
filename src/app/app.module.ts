@@ -8,18 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { CareerComponent } from './components/career/career.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutMeComponent,    
+    AboutMeComponent,
     CareerComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatSidenavModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

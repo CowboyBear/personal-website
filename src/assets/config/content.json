@@ -1,0 +1,96 @@
+{
+  "personalInformation": {
+    "profilePictureSrc": "assets/img/profile-picture.jpeg",      
+    "name": "Matheus Jatczak Bertazzo",
+    "nationality": "Brazilian",
+    "email": "matheus@matheusbertazzo.com",
+    "dateOfBirth":"1994-10-05",
+    "biography": "  I'm a tech guy who really enjoys what I do for a living, here you'll find a little bit more about myself as well as the projects I worked on, personal interests, my professional experiences, ideias I have in mind (maybe I'll start a blog someday... Wouldn't count on that though) and my contact information."
+  },
+  "personalInterests": [
+    "Podcasts",
+    "Coding",
+    "Cyber Security",
+    "Beer",
+    "Books",
+    "Cycling",
+    "Video games",
+    "Board games",
+    "Card games",
+    "Honestly, all kinds of games..."
+  ],
+  "technicalKnowledge": [
+    {
+      "title": ".NET (C#)",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/csharp.svg"
+    },
+    {
+      "title": "HTML5, CSS3, JS...",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/html5.svg"
+    },
+    {
+      "title": "Java",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/java.svg"
+    },
+    {
+      "title": "Containers & Orchestration",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/containers.png"
+    },
+    {
+      "title": "Database Stuff...",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/db.png"
+    },
+    {
+      "title": "Cloud Stuff",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/cloud.png"
+    },
+    {
+      "title": "Agile software development",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/agile.png"
+    },
+    {
+      "title": "Clean code & Best Practices",
+      "description": [
+        "blablablablabla",
+        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
+        "blablabla"
+      ],
+      "emblemSrc": "assets/img/emblems/cleancode.png"
+    }
+  ]
+}
