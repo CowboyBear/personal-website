@@ -20,7 +20,7 @@ export class AboutMeComponent implements OnInit {
   ngOnInit(): void {
 
     this.websiteContentService.get().subscribe(
-      (content: WebsiteContent) => {        
+      (content: WebsiteContent) => {           
         this.websiteContent = content;        
         this.dateOfBirth = content.personalInformation.dateOfBirth.format("MMM Do, yyyy");
         this.myAge = moment().diff(content.personalInformation.dateOfBirth, 'years');

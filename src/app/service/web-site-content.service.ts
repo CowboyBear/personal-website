@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Career } from '../models/Career';
 import { PersonalInformation } from '../models/PersonalInformation';
 import { TechnicalKnowledge } from '../models/TechnicalKnowledge';
 import { WebsiteContent } from '../models/WebsiteContent';
@@ -22,11 +23,21 @@ export class WebSiteContentService {
   private getWebsiteContentFromConfiguration(configuration: any): WebsiteContent {
     return new WebsiteContent(
       {
-        personalInformation: this.getPersonalInformationFromConfiguration(configuration.personalInformation),
+        personalInformation: new PersonalInformation(configuration.personalInformation),
         personalInterests: configuration.personalInterests,
-        technicalKnowledge: this.getTechnicalKnowledgeFromConfiguration(configuration.technicalKnowledge)
+        technicalKnowledge: this.getTechnicalKnowledgeFromConfiguration(configuration.technicalKnowledge),
+        careerInformation: this.getCareerInformationFromConfiguration(configuration.careerInformation)
       }
     );
+  }
+  getCareerInformationFromConfiguration(configuration: any): Career[] {
+    const careerInformation: Career[] = [];
+
+    configuration.forEach(career => {
+      careerInformation.push(new Career(career));      
+    });
+
+    return careerInformation;
   }
 
   private getTechnicalKnowledgeFromConfiguration(configuration: any): TechnicalKnowledge[] {
@@ -34,27 +45,10 @@ export class WebSiteContentService {
 
     configuration.forEach((knowledge: any) => {
       technicalKnowledge.push(
-        new TechnicalKnowledge({
-          title: knowledge.title,
-          description: knowledge.description,
-          emblemSrc: knowledge.emblemSrc
-        })
+        new TechnicalKnowledge(knowledge)
       );
     });
 
     return technicalKnowledge;
-  }
-
-  private getPersonalInformationFromConfiguration(configuration: any): PersonalInformation {
-    return new PersonalInformation(
-      {
-        profilePictureSrc: configuration.profilePictureSrc,
-        name: configuration.name,
-        email: configuration.email,
-        dateOfBirth: configuration.dateOfBirth,
-        nationality: configuration.nationality,
-        biography: configuration.biography        
-      }
-    );
   }
 }
