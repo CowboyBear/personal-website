@@ -21,74 +21,79 @@
   ],
   "technicalKnowledge": [
     {
-      "title": ".NET (C#)",
+      "title": ".NET & .NET Core",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "C# is my go-to language for personal projects and quick PoC's",
+        "5+ years of development experience",
+        "Yes, I also know VB.NET and ASP.NET...",
+        "No, I wont take any VB.NET or ASP.NET opportunities"
       ],
       "emblemSrc": "assets/img/emblems/csharp.svg"
     },
     {
       "title": "HTML5, CSS3, JS...",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "Bootstrap & Material design",
+        "I love Angular and have been using it since 2014. This very website is coded in Angular :)",
+        "Know a little bit of React, NodeJS, VueJS as well",
+        "Yes, I also know SCSS, SASS, LESS, TypeScript and all the \"advanced\" stuff"
       ],
       "emblemSrc": "assets/img/emblems/html5.svg"
     },
     {
       "title": "Java",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "2+ years of Spring boot development experience",
+        "2+ years of JSP/JSF development experience",
+        "Honestly, not really a big fan of Java..."        
       ],
       "emblemSrc": "assets/img/emblems/java.svg"
     },
     {
       "title": "Containers & Orchestration",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "3+ years of Docker & Kubernetes experience",
+        "Worked 2 years frequently using RedHat's Openshift Container Platform",
+        "Good experience and a big fan of containerizing applications"
       ],
       "emblemSrc": "assets/img/emblems/containers.png"
     },
     {
       "title": "Database Stuff...",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "SQL Server, Oracle, PostgreSQL, MySQL",
+        "Stored procedures, functions, indexes, etc...",
+        "Non-relational DB's: MongoDB & Cosmos DB"
       ],
       "emblemSrc": "assets/img/emblems/db.png"
     },
     {
       "title": "Cloud Stuff",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "Azure: Azure functions, VM's, Web applications, APIM, ARM templates, etc..",
+        "Google Cloud Platform: VM's, GKE, cloud build & cloud deploy",
+        "AWS: No :("
       ],
       "emblemSrc": "assets/img/emblems/cloud.png"
     },
     {
       "title": "Agile software development",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "Real agile experience, not the average \"We use scrum and a kanban board so we must be a super agile company\" agile experience people usually tend to believe in",
+        "Scrum, Kanban, extreme programing (XP)",
+        "Big fan of pair programming!",
+        "It's past 2009, agile methodologies have been around for a while, if you don't use them correctly please don't contact me (or do, if you want to change)"
       ],
       "emblemSrc": "assets/img/emblems/agile.png"
     },
     {
       "title": "Clean code & Best Practices",
       "description": [
-        "blablablablabla",
-        "bla blabla blablabla bla blablabla blablablablabla blablablablablabla",
-        "blablabla"
+        "Yes, I read a couple of books from Martin Fowler, Kent Beck, Robert C. Martin, etc...",
+        "Test Driven Development (TDD) & Automated tests EVERYWHERE",
+        "Domain Driven Design (DDD)",
+        "SOLID, YAGNI, DRY, KISS...",
+        "CI/CD and DevOps mindset"
       ],
       "emblemSrc": "assets/img/emblems/cleancode.png"
     }
