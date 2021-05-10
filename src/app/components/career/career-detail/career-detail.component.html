@@ -1,0 +1,50 @@
+<div class="col s12">
+  <img class="logo" [src]="careerDetail?.logoSrc" alt="">
+</div>
+<div class="col s12 section">
+  <h1>About {{careerDetail?.company}}</h1>
+  {{careerDetail?.about}}
+</div>
+
+<div class="col s12 section">
+  <h1>Positions occupied</h1>
+  <div *ngFor="let position of careerDetail?.positions">
+    <div class="section-text">
+      <h2>{{position.title}} {{getFormattedPositionPeriod(position)}}</h2>
+      {{position.description}}
+    </div>
+  </div>
+</div>
+
+<div class="col s12 section">
+  <h1>Relevant projects</h1>
+  <div *ngFor="let project of careerDetail?.projects">
+    <div class="section-text">
+      <h2>{{project.title}}</h2>
+      <div [innerHTML]="project.description"></div>
+    </div>
+  </div>
+</div>
+
+<div class="col s12 section">
+  <h1>Main technologies used</h1>
+  <img *ngFor="let technologySrc of careerDetail?.technologies" [src]="technologySrc" class="responsive-img emblem">      
+</div>
+
+<div class="col s12 career-navigator">
+  <div class="col s4 center-align">
+    <a [href]="previousCompanyLink" [hidden]="!previousCompanyLink">
+      Previous company
+    </a>
+  </div>
+  <div class="col s4 center-align">
+    <a routerLink="/career">
+      Back to timeline
+    </a>
+  </div>
+  <div class="col s4 center-align">
+    <a [href]="nextCompanyLink" [hidden]="!nextCompanyLink">
+      Next company
+    </a>
+  </div>
+</div>

@@ -1,11 +1,11 @@
 {
   "personalInformation": {
-    "profilePictureSrc": "assets/img/profile-picture.jpeg",      
+    "profilePictureSrc": "assets/img/profile-picture.jpeg",
     "name": "Matheus Jatczak Bertazzo",
     "nationality": "Brazilian",
     "email": "matheus@matheusbertazzo.com",
-    "dateOfBirth":"1994-10-05",
-    "biography": "  I'm a tech guy who really enjoys what I do for a living, here you'll find a little bit more about myself as well as the projects I worked on, personal interests, my professional experiences, ideias I have in mind (maybe I'll start a blog someday... Wouldn't count on that though) and my contact information."
+    "dateOfBirth": "1994-10-05",
+    "biography": "  I'm a tech guy who really enjoys what I do for a living, here you'll find a little bit more about myself as well as the projects I worked on, personal interests, my professional experiences, ideas I have in mind (maybe I'll start a blog someday... Wouldn't count on that though) and my contact information."
   },
   "personalInterests": [
     "Podcasts",
@@ -95,29 +95,155 @@
   ],
   "careerInformation": [
     {
+      "logoSrc": "assets/img/career/logos/adapar.png",
       "company": "ADAPAR",
       "startDate": "2013-02-01",
       "endDate": "2014-02-01",
-      "iconSrc": "assets/img/career/icons/barn.png"
+      "iconSrc": "assets/img/career/icons/barn.png",
+      "about": "ADAPAR (Agência de Defesa Agropecuária do Paraná) is the state entity responsible for the evaluation of documents and the agronomic efficiency regarding the authorization of commerce and use of agrotoxics in the state of Paraná",
+      "positions": [
+        {
+          "title": "Intern (Software development)",
+          "startDate": "2013-02-01",
+          "endDate": "2014-02-01",
+          "description": "System analysis and programming. Performed activities such as Web development using Object-Oriented PHP, Software documentation and diagramming using UML 2.0."
+        },
+        {
+          "title": "Intern (Tech support)",
+          "startDate": "2013-02-01",
+          "endDate": "2014-02-01",
+          "description": "Provided technical support for the 399 different ADAPAR units across the Paraná state. That involved troubleshooting/fixing hardware and software issues as well as sending/receiving computer parts across the different ADAPAR units and assisting on the purchasing of hardware equipment."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Asset management system",
+          "description": "Created an application, using PHP and Microsoft SQL Server, to manage the company assets. That included the details about the asset, knowing who was the person responsible for that asset as well as it's current location (between multiple cities across the state) and also printing identification tags for those assets. This project was a one-man-project and included not only developing the system but also migrating asset data from different legacy systems, printing identification tags and, later, tagging the equipments."
+        }
+      ],
+      "technologies": [
+        "/assets/img/emblems/php.png",
+        "/assets/img/emblems/sql-server.png"      
+      ]
     },
     {
+      "logoSrc": "assets/img/career/logos/logo-tce-pr.png",        
       "company": "TCE-PR",
       "startDate": "2014-02-01",
       "endDate": "2016-05-01",
-      "iconSrc": "assets/img/career/icons/auction.png"
+      "iconSrc": "assets/img/career/icons/auction.png",
+      "about": "TCE-PR (Tribunal de Contas do Estado do Paraná) is the state entity responsible for the audit of the use of all the state budget and also controling all volume of public money invested by Paraná's goverment (and all 399 city halls) and reporting the results of such investments for the population (making sure the money was well spent and assuring the quality of the services provided by the Paraná state).",
+      "positions": [
+        {
+          "title": "Intern (Software development)",
+          "startDate": "2014-02-01",
+          "endDate": "2015-02-01",
+          "description": "Software development for both, existing and new, internal systems using .NET (ASP, VB, C#, Entity Framework, MS Report Server and other Microsoft technologies). Also worked on system analysis by doing software documentation and diagramming using UML 2.0 as well as assisting senior system analysts on requirements specification."
+        },
+        {
+          "title": "Full Stack .NET software developer (Contractor)",
+          "startDate": "2015-02-01",
+          "endDate": "2016-05-01",
+          "description": "Was hired as a contractor (by eWave do Brasil) to be deployed on TCE-PR as Software developer. During this period, worked on software development for both, existing and new, internal systems that used a very diverse set of technologies, here's some of them: ASP.NET, .NET MVC, .NET Web API, Entity Framework, SQL Server, Microsoft Report Server, HTML5, CSS3, Bootstrap, JQuery and AngularJS."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Sistema de Obras Publicas do Paraná (SIOP)",
+          "description": "Participated in the design and development of the SIOP application. This applications objective was to provide the population with information regarding the state's budget that is spent on the construction of public structures (streets, reneweals and construction of public buildings, statues, parks, etc...). The information provided is done through an interactive Parana's map with the assistance of a user friendly interface. This project was developed/designed by a team of 3 developers and is still maintained by TCEPR to this day. Since the application is public, you can access it on this link: <a href=\"https://servicos.tce.pr.gov.br/TCEPR/Tribunal/Relacon/Mapa/MapaObras\" target=\"_blank\">https://servicos.tce.pr.gov.br/TCEPR/Tribunal/Relacon/Mapa/MapaObras</a>"
+        }
+      ],
+      "technologies": [
+        "/assets/img/emblems/csharp.svg",
+        "/assets/img/emblems/html5.png",
+        "/assets/img/emblems/sql-server.png",
+        "/assets/img/emblems/mvc.png",
+        "/assets/img/emblems/bootstrap.png",
+        "/assets/img/emblems/angular.svg"
+      ]
     },
     {
+      "logoSrc": "assets/img/career/logos/exxonmobil.png",        
       "company": "ExxonMobil",
       "startDate": "2016-05-11",
       "endDate": "2020-07-01",
-      "iconSrc": "assets/img/career/icons/oil-pump.png"
+      "iconSrc": "assets/img/career/icons/oil-pump.png",
+      "about": "Exxon Mobil Corporation, stylized as ExxonMobil, is an American multinational oil and gas corporation headquartered in Irving, Texas. It is the largest direct descendant of John D. Rockefeller's Standard Oil, and was formed on November 30, 1999 by the merger of Exxon (formerly the Standard Oil Company of New Jersey) and Mobil (formerly the Standard Oil Company of New York). ExxonMobil's primary brands are Exxon, Mobil, Esso, and ExxonMobil Chemical.",
+      "positions": [
+        {
+          "title": "Full Stack software developer",
+          "startDate": "2016-05-11",
+          "endDate": "2017-08-11",
+          "description": "System analysis and full stack software development in multiple international projects (based in US, Canada, Budapest, India, Bangkok, among many other locations). During this period, most of the development done was towards the maintainance of existing internal applications. Among many other technologies involved on my day-to-day activities, it's worth mention the following: C# (MVC, Razor, .NET Core, IIS), SQL Server, AngularJS and NodeJS."
+        },
+        {
+          "title": "Tech lead",
+          "startDate": "2017-08-11",
+          "endDate": "2020-07-01",
+          "description": "Assumed the role of Tech lead on many different projects, with different team sizes (6 to 17 people) and stakeholders based on different locations (mainly in US, Budapest, India and Bangkok). Was responsible for designing and developing applications, guiding the technical team towards the agreed objectives, creating technical roadmaps that demonstrated what was envisioned for the future of the product as well as assuring quality through clean, maintainable and scalable code by applying coding best practices (such as SOLID, TDD, DDD, CI/CD and a DevOps mindset). Was also responsible for interacting with internal ExxonMobil customers and managing software development vendors based in India/Budapest. Among many other technologies involved in my daily activities, it's worth to mention: Java (Spring, Spring Boot), C# (MVC, Razor, .NET Core, IIS), Angular (Angular 2+, Jasmine, Karma, Protractor), NodeJS, Docker, Kubernetes, Jenkins, RedHat Openshift and Azure."
+          }
+      ],
+      "projects": [
+        {
+          "title": "FindMe",
+          "description": "Worked as the Tech lead/Lead developer and subject matter expert (SME) of the \"FindMe\" project. The project consisted in gathering network information from each office it was implemented and, based on that, automatically plot in an interactive map the information about where each person was seating. To this day, FindMe is fully implemented and widely used in the following ExxonMobil offices: Curitiba (Brazil), Buenos Aires (Argentina), Houston (US), Singapore (Malaysia), Kuala Lumpur (Malaysia) and Melbourne (Australia)."
+        },
+        {
+          "title": "Summer (chatbot)",
+          "description": "Worked as a Tech lead/Lead developer and, later, as a technical advisor during implementation of a chatbot to support ExxonMobil’s internal users. The chatbot used a decision matrix, along with a natural language processor to open support tickets and decide the correct support team to assign the tickets to. Currently \"Summer\" is up and running and supports over 300 users on a daily basis."
+        },
+        {
+          "title": "Order Domain Service (ODS)",
+          "description": "Worked as a Tech lead on the Order Domain Service (ODS) project. The objective of this project was to provide a one-stop shop for all ExxonMobil's sales orders information so orders could be placed/consulted either through a REST API or through an event driven architecture (Kafka MQ's)"
+        },
+        {
+          "title": "Delivery Domain Service (DDS)",
+          "description": "Worked as a Tech lead on the Delivery Domain Service (DDS) project. The objective of this project was to provide a one-stop shop for all ExxonMobil's delivery information so it could be consumed either through a REST API or through an event driven architecture (Kafka MQ's)"
+        }
+      ],
+      "technologies": [
+        "/assets/img/emblems/csharp.svg",
+        "/assets/img/emblems/java.svg",
+        "/assets/img/emblems/springboot.png",
+        "/assets/img/emblems/html5.png",
+        "/assets/img/emblems/sql-server.png",        
+        "/assets/img/emblems/angular.svg",
+        "/assets/img/emblems/dotnet-core.png",
+        "/assets/img/emblems/nodejs.svg",
+        "/assets/img/emblems/docker.png",
+        "/assets/img/emblems/k8s.png",
+        "/assets/img/emblems/jenkins.png",
+        "/assets/img/emblems/ocp.png",
+        "/assets/img/emblems/azure.png"
+
+      ]
     },
     {
+      "logoSrc": "assets/img/career/logos/gft.svg",
       "company": "GFT",
       "startDate": "2020-07-01",
       "endDate": null,
-      "iconSrc": "assets/img/career/icons/consulting.png"
+      "iconSrc": "assets/img/career/icons/consulting.png",
+      "about": "Started in the Black Forest in Germany 1987, GFT has grown to become a trusted sector specialist for the international financial industry. It's been a pioneer of near-shore delivery since 2001 and now offer a global team spanning more than 15 countries with a Global Delivery Workforce of 6,000 people around the world.",
+      "positions": [
+        {
+          "title": "Tech Lead",
+          "startDate": null,
+          "endDate": null,
+          "description": "Currently leading a team of 5 people on a project for a customer that operates on the private equity business and is currently based in boston. I'm responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). The project uses an event driven approach that heavily relies on cloud concepts such as serverless."
+        }
+      ],
+      "projects": [
+        {
+          "title": "Under NDA",
+          "description": "Unfortunately, due to an ongoing NDA (non-disclosure agreement), I cannot provide more information about the work or projects I perform for this client."
+        }
+      ],
+      "technologies": [
+        "/assets/img/emblems/dotnet-core.png",
+        "/assets/img/emblems/sql-server.png",
+        "/assets/img/emblems/azure.png"      
+      ]
     }
-
   ]
 }

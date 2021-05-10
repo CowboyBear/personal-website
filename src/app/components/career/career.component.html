@@ -1,8 +1,8 @@
 <div class="col s12 hide-on-small-only margin-top"></div>
 <div class="col s12 center-align">  
   <h1>Here's a cool timeline of my career, click stuff to get more details :)</h1>
-  <div class="col s12 m6 l3 timeline-item" *ngFor="let career of websiteContent?.careerInformation">
-    <a>
+  <div class="col s12 m6 l3 timeline-item" *ngFor="let career of websiteContent?.careerInformation; index as i">
+    <a routerLink="/career/{{i}}">
       <img class="icon responsive-img" [src]="career.iconSrc">
       <br>
       {{getFormattedCareerPeriod(career)}}    

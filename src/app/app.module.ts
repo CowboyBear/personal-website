@@ -9,12 +9,13 @@ import { AboutMeComponent } from './components/about-me/about-me.component';
 import { CareerComponent } from './components/career/career.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CareerDetailComponent } from './components/career/career-detail/career-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutMeComponent,
-    CareerComponent, NotFoundComponent
+    CareerComponent, NotFoundComponent, CareerDetailComponent
   ],
   imports: [
     BrowserModule,
