@@ -9,8 +9,20 @@
         <li>Age: {{myAge}} ({{dateOfBirth}})</li>
         <li>Nationality: {{websiteContent?.personalInformation?.nationality}}</li>
         <li>
+          LinkedIn: 
+          <a [href]="websiteContent?.personalInformation?.linkedIn" target="_blank">
+            {{websiteContent?.personalInformation?.linkedIn}}
+          </a>
+        </li>
+        <li>
+          GitHub: 
+          <a [href]="websiteContent?.personalInformation?.github" target="_blank">
+            {{websiteContent?.personalInformation?.github}}
+          </a>
+        </li>
+        <li>
           Email:
-          <a>
+          <a href="mailto:{{websiteContent?.personalInformation?.email}}">
             {{websiteContent?.personalInformation?.email}}
           </a>
         </li>
@@ -28,8 +40,20 @@
         <li>Age: {{myAge}} ({{dateOfBirth}})</li>
         <li>Nationality: {{websiteContent?.personalInformation?.nationality}}</li>
         <li>
+          LinkedIn: 
+          <a [href]="websiteContent?.personalInformation?.linkedIn" target="_blank">
+            {{websiteContent?.personalInformation?.linkedIn}}
+          </a>
+        </li>
+        <li>
+          GitHub: 
+          <a [href]="websiteContent?.personalInformation?.github" target="_blank">
+            {{websiteContent?.personalInformation?.github}}
+          </a>
+        </li>
+        <li>
           Email:
-          <a>
+          <a href="mailto:{{websiteContent?.personalInformation?.email}}">
             {{websiteContent?.personalInformation?.email}}
           </a>
         </li>

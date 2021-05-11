@@ -12,7 +12,21 @@ export class AppComponent {
   @ViewChild("drawer") drawer: MatDrawer;
   websiteContent: WebsiteContent;
 
+  constructor(private websiteContentService: WebSiteContentService) { }
+
   ngAfterViewInit(): void {    
     // this.drawer.open();
+  }
+
+  ngOnInit(): void {
+
+    this.websiteContentService.get().subscribe(
+      (content: WebsiteContent) => {           
+        this.websiteContent = content;        
+      },
+      (error) => {
+        console.error("Error while getting website content: ", error);
+      }
+    );    
   }
 }

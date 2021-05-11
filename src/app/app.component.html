@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col s12 center-align">
         <img src="assets/img/profile-picture.jpeg" alt="" class="responsive-img circle">
-        <span class="col s12 name">Matheus Jatczak Bertazzo</span>
+        <span class="col s12 name">{{websiteContent?.personalInformation?.name}}</span>
         <span class="col s12">
-          <a>
-            matheus@matheusbertazzo.com
+          <a href="mailto:{{websiteContent?.personalInformation?.email}}">
+            {{websiteContent?.personalInformation?.email}}
           </a>
         </span>
       </div>

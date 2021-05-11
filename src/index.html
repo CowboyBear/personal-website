@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Matheus Bertazzo</title>
@@ -8,10 +9,64 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body class="mat-typography">
-  <app-root></app-root>
+  <main>
+    <app-root></app-root>
+  </main>
 </body>
-<!-- <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script> -->
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center-align">
+        Important note: I'm not an artist, I'm actually very far from it so here's my most sincere thanks to
+        <a class="modal-trigger" data-target="modal1">
+          these people
+        </a>
+        for the icons used on this website.        
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright center-align">
+    <div class="row">
+      <div class="col s12">This website is meant to become an open source project, you can find more information about
+        it <a target="_blank" href="https://github.com/CowboyBear/personal-website">here</a>.
+      </div>        
+    </div>
+  </div>
+</footer>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h1>So long and thanks for all the icons!</h1>    
+    <ul>
+      <li>
+        <a target="_blank" href="https://www.flaticon.com/free-icon/barn_3319236">https://www.flaticon.com/free-icon/barn_3319236</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.flaticon.com/free-icon/auction_4221474">https://www.flaticon.com/free-icon/auction_4221474</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.flaticon.com/free-icon/oil-pump_2979614">https://www.flaticon.com/free-icon/oil-pump_2979614</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.flaticon.com/free-icon/consulting_2145726">https://www.flaticon.com/free-icon/consulting_2145726</a>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {    
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {});
+  });
+</script>
+
 </html>

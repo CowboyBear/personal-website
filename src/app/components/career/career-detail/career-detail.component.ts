@@ -32,8 +32,7 @@ export class CareerDetailComponent implements OnInit {
 
         if (!this.careerDetail) {          
           this.router.navigate(['page-not-found'])               
-        }
-        console.log(this.careerDetail);
+        }        
       },
       (error) => {
         console.error("Error while getting website content: ", error);
