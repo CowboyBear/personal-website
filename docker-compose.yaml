@@ -1,0 +1,10 @@
+version: "3.8"
+services:    
+  mb-personal-website:    
+    ports: 
+      - "8080:80"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      labels: 
+        - "mb-personal-website"
