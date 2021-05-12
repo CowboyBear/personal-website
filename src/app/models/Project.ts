@@ -9,8 +9,10 @@ export class Project {
       description: string
     }
   ) {
-    this.title = fields.title || this.title;
-    this.description = fields.description || this.description;
+    if (fields) {
+      this.title = fields.title || this.title;
+      this.description = fields.description || this.description;
+    }
   }
 
 }

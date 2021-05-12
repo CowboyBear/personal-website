@@ -9,6 +9,22 @@
     "dateOfBirth": "1994-10-05",
     "biography": "  I'm a tech guy who really enjoys what I do for a living, here you'll find a little bit more about myself as well as the projects I worked on, personal interests, my professional experiences, ideas I have in mind (maybe I'll start a blog someday... Wouldn't count on that though) and my contact information."
   },
+  "education":[
+    {
+      "name": "Universidade Federal do Paraná (UFPR)",
+      "description": "Degree in \"Technology in System Analysis and Development\", Information Technology",
+      "startDate":"2012-01-01",
+      "endDate": "2015-01-01",
+      "imgSrc": "/assets/img/education/logos/ufpr.svg"
+    },
+    {
+      "name": "Faculdades Opet",
+      "description": "IT Technician degree, Information Technology",
+      "startDate":"2009-01-01",
+      "endDate": "2011-01-01",
+      "imgSrc": "/assets/img/education/logos/opet.png"
+    }
+  ],
   "personalInterests": [
     "Podcasts",
     "Coding",

@@ -3,6 +3,7 @@ import { TechnicalKnowledge } from 'src/app/models/TechnicalKnowledge';
 import * as moment from 'moment';
 import { WebSiteContentService } from 'src/app/service/web-site-content.service';
 import { WebsiteContent } from 'src/app/models/WebsiteContent';
+import { Education } from 'src/app/models/Education';
 
 @Component({
   selector: 'app-about-me',
@@ -30,5 +31,12 @@ export class AboutMeComponent implements OnInit {
         console.error("Error while getting website content: ", error);
       }
     );    
+  }
+
+  public getFormattedEducationPeriod(education: Education): string {
+    const shouldFormat: boolean = education.startDate.isValid() && education.endDate.isValid();
+
+    return shouldFormat ? education.startDate.format('YYYY') + ' - ' + education.endDate.format('YYYY')  : "";
+
   }
 }

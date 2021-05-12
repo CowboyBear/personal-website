@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Career } from '../models/Career';
+import { Education } from '../models/Education';
 import { PersonalInformation } from '../models/PersonalInformation';
 import { Position } from '../models/Position';
 import { Project } from '../models/Project';
@@ -26,12 +27,23 @@ export class WebSiteContentService {
     return new WebsiteContent(
       {
         personalInformation: new PersonalInformation(configuration.personalInformation),
+        education: this.getEducationFromConfiguration(configuration.education),
         personalInterests: configuration.personalInterests,
         technicalKnowledge: this.getTechnicalKnowledgeFromConfiguration(configuration.technicalKnowledge),
         careerInformation: this.getCareerInformationFromConfiguration(configuration.careerInformation)
       }
     );
   }
+  private getEducationFromConfiguration(configuration: any): import("../models/Education").Education[] {
+    const education: Education[] = [];
+
+    configuration.forEach(educationItem => {
+      education.push(new Education(educationItem));
+    });
+
+    return education;    
+  }
+
   private getCareerInformationFromConfiguration(configuration: any): Career[] {
     const careerInformation: Career[] = [];    
 

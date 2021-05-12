@@ -78,6 +78,22 @@
 </div>
 
 <div class="col s12 section">
+  <h1>Education</h1>
+  <div class="col s12 m12 l6" *ngFor="let education of websiteContent?.education">    
+    <div class="education-item">
+      <img [src]="education.imgSrc">
+      <div class="description">
+        <h1>{{education.name}}</h1>        
+        <ul>
+          <li>{{getFormattedEducationPeriod(education)}}</li>
+          <li>{{education.description}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col s12 section">
   <h1>Some technical stuff I happen to know...</h1>
   <div class="col s12 m12 l6" *ngFor="let technicalKnowledge of websiteContent?.technicalKnowledge">
     <div class="tech-knowledge-item">
