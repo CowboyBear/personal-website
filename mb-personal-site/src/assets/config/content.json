@@ -89,7 +89,7 @@
       "title": "Cloud Stuff",
       "description": [
         "Azure: Azure functions, VM's, Web applications, APIM, ARM templates, etc..",
-        "Google Cloud Platform: VM's, GKE, cloud build & cloud deploy",
+        "Google Cloud Platform: VM's, GKE, Cloud build & Cloud run",
         "AWS: No :("
       ],
       "emblemSrc": "assets/img/emblems/cloud.png"
