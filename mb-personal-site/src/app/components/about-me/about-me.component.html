@@ -79,9 +79,9 @@
 
 <div class="col s12 section">
   <h1>Education</h1>
-  <div class="col s12 m12 l6 education-item" *ngFor="let education of websiteContent?.education">        
+  <div class="col s12 m12 l6 portfolio-item" *ngFor="let education of websiteContent?.education">        
     <div class="col s12 m3 l3" style="padding:0;">
-      <img class="education-img" [src]="education.imgSrc">
+      <img [src]="education.imgSrc">
     </div>
     <div class="col s12 m9 l9 description">
       <h1>{{education.name}}</h1>        
@@ -90,30 +90,21 @@
         <li>{{education.description}}</li>
       </ul>
     </div>    
-    <!-- <div class="education-item">
-      <img [src]="education.imgSrc">
-      <div class="description">
-        <h1>{{education.name}}</h1>        
-        <ul>
-          <li>{{getFormattedEducationPeriod(education)}}</li>
-          <li>{{education.description}}</li>
-        </ul>
-      </div>
-    </div> -->
   </div>
 </div>
 
 <div class="col s12 section">
   <h1>Some technical stuff I happen to know...</h1>
-  <div class="col s12 m12 l6" *ngFor="let technicalKnowledge of websiteContent?.technicalKnowledge">
-    <div class="tech-knowledge-item">
+  <div class="col s12 m12 l6 portfolio-item" *ngFor="let technicalKnowledge of websiteContent?.technicalKnowledge">    
+    <div class="col s12 m3 l3" style="padding:0;">
       <img [src]="technicalKnowledge.emblemSrc">
-      <div class="description">
-        <h1>{{technicalKnowledge.title}}</h1>
-        <ul>
-          <li *ngFor="let description of technicalKnowledge.description">{{description}}</li>
-        </ul>
-      </div>
+    </div>
+    <div class="col s12 m9 l9 description">
+      <h1>{{technicalKnowledge.title}}</h1>
+      <ul>
+        <li *ngFor="let description of technicalKnowledge.description">{{description}}</li>
+      </ul>
     </div>
   </div>
+  
 </div>
