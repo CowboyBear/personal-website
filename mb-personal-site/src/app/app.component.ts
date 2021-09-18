@@ -14,8 +14,7 @@ export class AppComponent {
 
   constructor(private websiteContentService: WebSiteContentService) { }
 
-  ngAfterViewInit(): void {    
-    // this.drawer.open();
+  ngAfterViewInit(): void {        
   }
 
   ngOnInit(): void {
