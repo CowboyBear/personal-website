@@ -89,8 +89,8 @@
       "title": "Cloud Stuff",
       "description": [
         "Azure: Azure functions, VM's, Web applications, APIM, ARM templates, etc..",
-        "Google Cloud Platform: VM's, GKE, Cloud build & Cloud run",
-        "AWS: No :("
+        "Google Cloud Platform: I'm a certified <a target=\"_blank\" href=\"https://googlecloudcertified.credential.net/profile/df5cd1195ea76947535ef27dfc2508cc0477ed9a\">GCP Associate Cloud Engineer</a>",
+        "AWS: Very limited experience."
       ],
       "emblemSrc": "assets/img/emblems/cloud.png"
     },
@@ -251,21 +251,39 @@
       "positions": [
         {
           "title": "Tech Lead",
-          "startDate": null,
+          "startDate": "2020-07-14",
+          "endDate": "2021-06-30",
+          "description": "Lead a team of 5 people on a project for a customer that operates on the private equity business and is currently based in Boston. Responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). For the technologies involved, check the \"Private equity customer project\" in the projects section."
+        },
+        {
+          "title": "Tech Lead",
+          "startDate": "2021-07-01",
           "endDate": null,
-          "description": "Currently leading a team of 5 people on a project for a customer that operates on the private equity business and is currently based in boston. I'm responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). The project uses an event driven approach that heavily relies on cloud concepts such as serverless."
+          "description": "Leading a team of 7 people on a project for a national (Brazilian) customer that operates on the credit monitoring business. Responsible for coding microservices, architecture design and also guiding the team towards a top-of-the-market agile software development experience. For the technologies involved, check the \"Credit monitoring customer project\" in the projects section."
         }
       ],
       "projects": [
         {
-          "title": "Under NDA",
-          "description": "Unfortunately, due to an ongoing NDA (non-disclosure agreement), I cannot provide more information about the work or projects I perform for this client."
+          "title": "Private equity customer project (Anonymized due to NDA)",
+          "description": "The project used an event driven architecture that heavily relied on microservices and cloud concepts/technologies such as serverless (azure functions), event grid, storage queues, etc..."
+        },
+        {
+          "title": "Credit monitoring customer project (Anonymized due to NDA)",
+          "description": "The project is a customer monitoring solution to be used both, internally and externally. It uses an architecture that heavily relies on microservices (REST and OData) and AWS cloud technologies such as serverless (S3), SQS, Storage buckets, etc... The project is being developed using a variety of technologies, the ones worth listing are: Java, Scala, Angular, Docker, Openshift, Jenkins and MongoDB. Quality assurance and test automation are very relevant matters for this customer, so some technologies are being applied to match their expectations: Jasmine/Karma, JUnit, RestAssured, Cucumber, Cypress."
         }
       ],
       "technologies": [
         "/assets/img/emblems/dotnet-core.png",
         "/assets/img/emblems/sql-server.png",
-        "/assets/img/emblems/azure.png"      
+        "/assets/img/emblems/azure.png",
+        "/assets/img/emblems/java.png",
+        "/assets/img/emblems/scala.png",
+        "/assets/img/emblems/springboot.png",
+        "/assets/img/emblems/angular.svg",
+        "/assets/img/emblems/docker.png",
+        "/assets/img/emblems/jenkins.png",
+        "/assets/img/emblems/ocp.png",
+        "/assets/img/emblems/mongo.png"
       ]
     }
   ]
