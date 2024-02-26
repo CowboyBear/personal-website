@@ -40,8 +40,7 @@
   "technicalKnowledge": [
     {
       "title": ".NET & .NET Core",
-      "description": [
-        "C# is my go-to language for personal projects and quick PoC's",
+      "description": [        
         "5+ years of development experience",
         "Yes, I also know VB.NET and ASP.NET...",
         "No, I wont take any VB.NET or ASP.NET opportunities"
@@ -52,8 +51,8 @@
       "title": "HTML5, CSS3, JS...",
       "description": [
         "Bootstrap & Material design",
-        "I love Angular and have been using it since 2014. This very website is coded in Angular :)",
-        "Know a little bit of React, NodeJS, VueJS as well",
+        "I love Angular and have been using it since 2014. (This very website is coded in Angular 🙂)",
+        "I know a little bit of React, NodeJS, VueJS as well",
         "Yes, I also know SCSS, SASS, LESS, TypeScript and all the \"advanced\" stuff"
       ],
       "emblemSrc": "assets/img/emblems/html5.svg"
@@ -61,17 +60,17 @@
     {
       "title": "Java",
       "description": [
-        "2+ years of Spring boot development experience",
-        "2+ years of JSP/JSF development experience",
-        "Honestly, not really a big fan of Java..."        
+        "Java is my go-to language for personal projects and quick PoC's",
+        "7+ years of Spring boot development experience",
+        "About 2 years of JSP/JSF development experience"
       ],
-      "emblemSrc": "assets/img/emblems/java.svg"
+      "emblemSrc": "assets/img/emblems/java.png"
     },
     {
       "title": "Containers & Orchestration",
       "description": [
-        "3+ years of Docker & Kubernetes experience",
-        "Worked 2 years frequently using RedHat's Openshift Container Platform",
+        "6+ years of Docker & Kubernetes experience",
+        "Worked 4 years frequently using RedHat's Openshift Container Platform",
         "Good experience and a big fan of containerizing applications"
       ],
       "emblemSrc": "assets/img/emblems/containers.png"
@@ -81,7 +80,7 @@
       "description": [
         "SQL Server, Oracle, PostgreSQL, MySQL",
         "Stored procedures, functions, indexes, etc...",
-        "Non-relational DB's: MongoDB & Cosmos DB"
+        "Non-relational DB's: MongoDB, DocumentDB & Cosmos DB"
       ],
       "emblemSrc": "assets/img/emblems/db.png"
     },
@@ -90,24 +89,24 @@
       "description": [
         "Azure: Azure functions, VM's, Web applications, APIM, ARM templates, etc..",
         "Google Cloud Platform: I'm a certified <a target=\"_blank\" href=\"https://googlecloudcertified.credential.net/profile/df5cd1195ea76947535ef27dfc2508cc0477ed9a\">GCP Associate Cloud Engineer</a>",
-        "AWS: Very limited experience."
+        "AWS: About 3 years of constant usage of AWS cloud services"
       ],
       "emblemSrc": "assets/img/emblems/cloud.png"
     },
     {
       "title": "Agile software development",
       "description": [
-        "Real agile experience, not the average \"We use scrum and a kanban board so we must be a super agile company\" agile experience people usually tend to believe in",
+        "Real agile experience, not the average \"We use scrum and a kanban board so we must be a super agile company\" experience people usually tend to believe in",
         "Scrum, Kanban, extreme programing (XP)",
         "Big fan of pair programming!",
-        "It's past 2009, agile methodologies have been around for a while, if you don't use them correctly please don't contact me (or do, if you want to change)"
+        "It's past 2009, agile methodologies have been around for a while, if you don't use them correctly please don't contact me (or do, if you want to change 😉)"
       ],
       "emblemSrc": "assets/img/emblems/agile.png"
     },
     {
       "title": "Clean code & Best Practices",
       "description": [
-        "Yes, I read a couple of books from Martin Fowler, Kent Beck, Robert C. Martin, etc...",
+        "Yes, I read a couple of books from Martin Fowler, Kent Beck, Robert C. Martin, Michael Feathers, etc...",
         "Test Driven Development (TDD) & Automated tests EVERYWHERE",
         "Domain Driven Design (DDD)",
         "SOLID, YAGNI, DRY, KISS...",
@@ -245,7 +244,7 @@
       "logoSrc": "assets/img/career/logos/gft.svg",
       "company": "GFT",
       "startDate": "2020-07-01",
-      "endDate": null,
+      "endDate": "2021-12-01",
       "iconSrc": "assets/img/career/icons/consulting.png",
       "about": "Started in the Black Forest in Germany 1987, GFT has grown to become a trusted sector specialist for the international financial industry. It's been a pioneer of near-shore delivery since 2001 and now offer a global team spanning more than 15 countries with a Global Delivery Workforce of 6,000 people around the world.",
       "positions": [
@@ -253,23 +252,23 @@
           "title": "Tech Lead",
           "startDate": "2020-07-14",
           "endDate": "2021-06-30",
-          "description": "Lead a team of 5 people on a project for a customer that operates on the private equity business and is currently based in Boston. Responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). For the technologies involved, check the \"Private equity customer project\" in the projects section."
+          "description": "Led a team of 5 people on a project for a customer that operates on the private equity business and is currently based in Boston. Responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). For the technologies involved, check the \"Private equity customer project\" in the projects section."
         },
         {
           "title": "Tech Lead",
           "startDate": "2021-07-01",
-          "endDate": null,
-          "description": "Leading a team of 7 people on a project for a national (Brazilian) customer that operates on the credit monitoring business. Responsible for coding microservices, architecture design and also guiding the team towards a top-of-the-market agile software development experience. For the technologies involved, check the \"Credit monitoring customer project\" in the projects section."
+          "endDate": "2021-12-01",
+          "description": "Led a team of 7 people on a project for a national (Brazilian) customer that operates on the credit protection services. Responsible for coding microservices, architecture design and also guiding the team towards a top-of-the-market agile software development experience. For the technologies involved, check the \"Credit protection services project\" in the projects section."
         }
       ],
       "projects": [
         {
           "title": "Private equity customer project (Anonymized due to NDA)",
-          "description": "The project used an event driven architecture that heavily relied on microservices and cloud concepts/technologies such as serverless (azure functions), event grid, storage queues, etc..."
+          "description": "The project used an event driven architecture that heavily relied on microservices (C#/.NET core) and cloud (Azure) concepts/technologies such as serverless (azure functions), event grid, storage queues, etc..."
         },
         {
-          "title": "Credit monitoring customer project (Anonymized due to NDA)",
-          "description": "The project is a customer monitoring solution to be used both, internally and externally. It uses an architecture that heavily relies on microservices (REST and OData) and AWS cloud technologies such as serverless (S3), SQS, Storage buckets, etc... The project is being developed using a variety of technologies, the ones worth listing are: Java, Scala, Angular, Docker, Openshift, Jenkins and MongoDB. Quality assurance and test automation are very relevant matters for this customer, so some technologies are being applied to match their expectations: Jasmine/Karma, JUnit, RestAssured, Cucumber, Cypress."
+          "title": "Credit protection services project (Anonymized due to NDA)",
+          "description": "The project is a customer monitoring solution to be used both, internally and externally. It uses an architecture that heavily relies on microservices (REST and OData) and AWS cloud technologies such as Lambda, CloudFront, SQS, S3, etc... The project was developed using a variety of technologies, the ones worth listing are: Java, Scala, Angular, Docker, Openshift, Jenkins and MongoDB. Quality assurance and test automation are very relevant matters for this customer, so some technologies are being applied to match their expectations: Jasmine/Karma, JUnit, RestAssured, Cucumber, Cypress."
         }
       ],
       "technologies": [
@@ -284,6 +283,65 @@
         "/assets/img/emblems/jenkins.png",
         "/assets/img/emblems/ocp.png",
         "/assets/img/emblems/mongo.png"
+      ]
+    },
+    {
+      "logoSrc": "assets/img/career/logos/serasa-experian.png",
+      "company": "Serasa Experian",
+      "startDate": "2021-12-01",
+      "endDate": null,
+      "iconSrc": "assets/img/career/icons/credit-protection.png",
+      "about": "Serasa was founded in 1968 as the first brazilian credit protection services company and today is Brazil's biggest Datatech with a customer portfolio of about 500K companies and 75M people. Since 2007, Serasa is part of the Experian group which is present in 44 countries and was elected, by Forbes (2018), one of the most inovative companies in the world.",
+      "positions": [
+        {
+          "title": "Tech Lead",
+          "startDate": "2021-12-01",
+          "endDate": "2022-06-30",
+          "description": "Led teams of approximately 9 people on very strategic projects. My main responsibilities included translating the business requirements into technical requirements, designing/coding the technical solutions and, of course, guiding the teams towards technical excelence by using of project development and agile best practices. For the technologies involved, check the projects section."
+        },
+        {
+          "title": "Application Architect",
+          "startDate": "2022-06-30",
+          "endDate": null,
+          "description": "Responsible for designing technical solutions, conducting PoC's, defining the technical strategy and maintaining a portifolio of over 100 applications distributed across about 10 projects and maintained by 4 separate teams. Also, since in Serasa the Application Architect is equivalent to a \"Technical IT Manager\", I'm also responsible to act as an internal consultant and manage the tech leads for each team from a functional standpoint."
+        }
+      ],
+      "projects": [        
+        {
+          "title": "Monitoramento de Clientes e Fornecedores (MDCF)",
+          "description": "This product is defined as a \"customers and suppliers monitoring solution\" where companies can upload their customer/supplier portfolio and monitor all credit-protection related events for that portfolio. It uses an architecture that heavily relies on microservices (Java/Springboot) and AWS cloud technologies (EKS, CloudFront, SQS, S3, etc...). The project was developed using a variety of technologies, the ones worth listing are: Java, Angular, Docker, Jenkins and DocumentDB. Since quality assurance was a very critical aspect of this project, some technologies were used for test automation: Cypress, Jasmine/Karma, JUnit, RestAssured and Cucumber."
+        },
+        {
+          "title": "Me Avise/Me Proteja/Automonitoramento de empresas (AMDE)",
+          "description": "This product is a monitoring solution that allows Serasa partners (referred as \"distributors\") to integrate their own self-monitoring solutions with Serasa via an API and receive credit-protection related events and credit reports via webhook. The project relies heavily on the best of API practices and is supported by a microservice/SOA architecture and a robust AWS infrastructure. The technical stack used is almost identical to the one listed on the \"Monitoramento de Clientes e Fornecedores (MDCF)\" project."
+        },
+        {
+          "title": "Motor de monitoramento (MDM)",
+          "description": "This is an internal project that literally translates to \"Monitoring Engine\" and is the backbone of all of Serasa's monitoring solutions. It gathers events and data from many different internal sources (main frame, legacy applications, partner databases, etc...), transforms it into a palatable/user-friendly format and distributes it (using an event-driven approach) to the end-user products. The technical stack for this project is mostly Scala/Java/Airflow, also, due to the high-volume/low-latency nature of the project, some AWS cloud services such EMR, SNS/SQS and EKS were heavily used. For quality assurance, Cypress and JUnit were used."
+        },
+        {
+          "title": "Ascend Insights (Legacy)",
+          "description": "This is a legacy product that is used to provide insights for the user about their customer portifolio through a series of credit reports available on the platform. My biggest achievement on this project was to recover the quality of the project as whole since the development team was struggling with agile and legacy code best practices. When I arrived, the code was very messy, untested and the team didn't have clarity of how to deal with a legacy application that big. When I left, the code quality improved significantly, was almost 80% tested (unit and integration tests) and the team had a concise roadmap of the next features to tackle."
+        },
+        {
+          "title": "Other legacy aplications",
+          "description": "Serasa, as any other company with more than 50 years of history, has a significantly-sized legacy portfolio. These applications/products were built in a variety of technologies (C#/VB.NET, Java, COBOL, Python, etc...), using a monolitic archteture approach. If not handled correctly, this situation can grow out of control and become a big problem. My main achievement regarding the legacy portfolio is not only managing it effectively but also significantly reducing it."
+        }
+      ],
+      "technologies": [
+        "/assets/img/emblems/aws.png",
+        "/assets/img/emblems/java.png",
+        "/assets/img/emblems/springboot.png",
+        "/assets/img/emblems/scala.png",
+        "/assets/img/emblems/airflow.png",
+        "/assets/img/emblems/angular.svg",
+        "/assets/img/emblems/nodejs.svg",
+        "/assets/img/emblems/docker.png",
+        "/assets/img/emblems/k8s.png",
+        "/assets/img/emblems/ocp.png",
+        "/assets/img/emblems/jenkins.png",
+        "/assets/img/emblems/mongo.png",
+        "/assets/img/emblems/csharp.svg"
       ]
     }
   ]
