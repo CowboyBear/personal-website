@@ -28,8 +28,9 @@ export class ResumeService {
   private getResumeContentFromConfiguration(websiteContent: WebsiteContent, resumeData: any): Resume {
     return new Resume({
       personalInformation: websiteContent.personalInformation,
-      education: websiteContent.education
-    })
+      education: websiteContent.education,
+      resumeData: resumeData
+    });
   }
 
 }
