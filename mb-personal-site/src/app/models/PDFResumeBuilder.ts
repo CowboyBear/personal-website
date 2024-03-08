@@ -4,6 +4,7 @@ import { Position } from "./Position";
 import { ProfessionalExperience } from "./ProfessionalExperience";
 import * as moment from "moment";
 import { DIR_DOCUMENT } from "@angular/cdk/bidi";
+import { Education } from "./Education";
 
 export class PDFResumeBuilder {
     private resume: Resume;
@@ -71,8 +72,7 @@ export class PDFResumeBuilder {
             window.location.origin
         ]);
 
-        this.addLineBreak();
-        this.addLineBreak();
+        this.addLineBreak(26);        
 
         return this;
     }
@@ -96,10 +96,25 @@ export class PDFResumeBuilder {
         this.resume.professionalExperiences.forEach((experience : ProfessionalExperience) => {            
             this.renderProfessionalExperienceComponent(experience);            
         });
-        
+
+        this.addLineBreak();        
 
         return this;
     }
+
+    public withEducation(): PDFResumeBuilder {
+        this.renderSectionSeparator('EDUCATION');
+        
+        this.resume.education.forEach((education : Education) => {            
+            this.renderTitleWithPeriodComponent(education.description, education.startDate, education.endDate);        
+            this.writeHighlightedSubtitle(education.name);
+            this.addLineBreak(this.getTextDimensions(education.name).h + 10);
+        });
+
+        this.addLineBreak();        
+
+        return this;
+    }    
 
     private renderProfessionalExperienceComponent(experience: ProfessionalExperience) : void {
         experience.positions.forEach((position: Position) => {            
@@ -108,9 +123,7 @@ export class PDFResumeBuilder {
 
             this.renderTitleWithPeriodComponent(position.title, position.startDate, position.endDate);            
 
-            this.doc.setTextColor('#1ab0b3');
-            this.setFontSize(14);
-            this.writeText(experience.company);
+            this.writeHighlightedSubtitle(experience.company);            
             this.addLineBreak(this.getTextDimensions(experience.company).h + 2);
 
             this.writeDefaultText(position.description);
@@ -243,6 +256,13 @@ export class PDFResumeBuilder {
     private writeSubHeader(text: string): void {
         this.setFontSize(16);
         this.writeText(text);
+    }
+
+    private writeHighlightedSubtitle(text: string): void {
+        const SUBTITLE_TEXT_COLOR = '#1ab0b3';
+        this.doc.setTextColor(SUBTITLE_TEXT_COLOR);
+        this.setFontSize(14);
+        this.writeText(text);        
     }
 
     private writeHeader(text: string): void {

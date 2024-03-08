@@ -25,8 +25,9 @@ export class ResumeComponent {
           .withHeader()
           .withSummary()
           .withProfessionalExperience()
+          .withEducation()
           .build();
-          
+
         const localPdfUrl: string = URL.createObjectURL(blob);        
 
         this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(localPdfUrl);
