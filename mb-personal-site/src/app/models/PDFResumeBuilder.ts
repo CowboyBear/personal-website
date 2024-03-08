@@ -1,5 +1,9 @@
 import { jsPDF } from "jspdf";
 import { Resume } from "./Resume";
+import { Position } from "./Position";
+import { ProfessionalExperience } from "./ProfessionalExperience";
+import * as moment from "moment";
+import { DIR_DOCUMENT } from "@angular/cdk/bidi";
 
 export class PDFResumeBuilder {
     private resume: Resume;
@@ -15,8 +19,9 @@ export class PDFResumeBuilder {
     private readonly FONT_SIZE_SCALE: number = 0.571;
 
     private readonly DEFAULT_TEXT_COLOR = '#384347';
-
     private readonly MAX_TEXT_WIDTH = this.PAGE_WIDTH - (this.SIDE_BAR_WIDTH + this.HORIZONTAL_PADDING * 2);
+    private readonly LINE_END = this.PAGE_WIDTH - this.HORIZONTAL_PADDING;
+    private readonly LINE_START = this.SIDE_BAR_WIDTH + this.HORIZONTAL_PADDING;
 
     constructor(resume: Resume) {
         this.resume = resume;
@@ -45,11 +50,11 @@ export class PDFResumeBuilder {
     }
 
     public withHeader(): PDFResumeBuilder {
-        this.cursorXCoordinate = this.SIDE_BAR_WIDTH + this.HORIZONTAL_PADDING;
+        this.cursorXCoordinate = this.LINE_START;
         this.cursorYCoordinate = this.VERTICAL_PADDING;
 
         this.doc.setTextColor(this.DEFAULT_TEXT_COLOR);
-        this.writeHeader(this.resume.personalInformation.name.toUpperCase());        
+        this.writeHeader(this.resume.personalInformation.name.toUpperCase());
 
         this.addLineBreak();
 
@@ -70,23 +75,107 @@ export class PDFResumeBuilder {
         this.addLineBreak();
 
         return this;
-    }    
+    }
 
     public withSummary(): PDFResumeBuilder {
         this.renderSectionSeparator('SUMMARY');
 
-        this.writeDefaultText(this.resume.summary);        
+        this.writeDefaultText(this.resume.summary);
 
         this.cursorYCoordinate += this.getTextDimensions(this.resume.summary).h;
-        this.addLineBreak();        
+        this.addLineBreak();
 
         return this;
-    }       
+    }
+
+    // TODO: This method (and probably all other public methods as well) should be it's own class
+    // TODO: Maybe, revert the order of titles: First list the company, then the positions
+    public withProfessionalExperience(): PDFResumeBuilder {
+        this.renderSectionSeparator('PROFESSIONAL EXPERIENCE');
+        
+        this.resume.professionalExperiences.forEach((experience : ProfessionalExperience) => {            
+            this.renderProfessionalExperienceComponent(experience);            
+        });
+        
+
+        return this;
+    }
+
+    private renderProfessionalExperienceComponent(experience: ProfessionalExperience) : void {
+        experience.positions.forEach((position: Position) => {            
+            const componentHeight: number = this.getProfessionalExperienceComponentHeight(position, experience);
+            this.handlePageBreak(componentHeight);
+
+            this.renderTitleWithPeriodComponent(position.title, position.startDate, position.endDate);            
+
+            this.doc.setTextColor('#1ab0b3');
+            this.setFontSize(14);
+            this.writeText(experience.company);
+            this.addLineBreak(this.getTextDimensions(experience.company).h + 2);
+
+            this.writeDefaultText(position.description);
+            this.cursorYCoordinate += this.getTextDimensions(position.description).h;
+            this.addLineBreak(10);
+        });
+    }
+
+    private renderTitleWithPeriodComponent(title: string, startDate: moment.Moment, endDate: moment.Moment) : void {
+        const period: string = `${this.formatDate(startDate)} - ${this.formatDate(endDate)}`;
+        
+        this.doc.setTextColor(this.DEFAULT_TEXT_COLOR);
+        this.writeSubHeader(title);
+
+        this.cursorXCoordinate = this.LINE_END;
+        this.writeDefaultText(period, true);
+
+        this.cursorXCoordinate = this.LINE_START;
+        this.addLineBreak(this.getTextDimensions(period).h + 5);
+    }
+
+    private handlePageBreak(componentHeight: number) : void{
+        const shouldAddPageBreak: boolean = this.cursorYCoordinate + componentHeight > this.PAGE_HEIGHT;
+
+        if (shouldAddPageBreak) {
+            this.addPageBreak();
+        }
+    }
+
+    private addPageBreak() {
+        this.doc.addPage();
+        this.withSideBar();
+        this.cursorXCoordinate = this.LINE_START;
+        this.cursorYCoordinate = this.VERTICAL_PADDING;
+    }
+
+    private getProfessionalExperienceComponentHeight(position: Position, experience: ProfessionalExperience) : number {
+        let componentHeight: number = 0;
+
+        componentHeight = this.simulateTextHeight(position.title, 16, 5);
+        componentHeight += this.simulateTextHeight(experience.company, 14, 2);
+        componentHeight += this.simulateTextHeight(position.description, 12, 5);
+            
+        return componentHeight;
+    }
+
+    private simulateTextHeight(text: string, fontSize: number, verticalPadding?: number) {
+        let oldFontSize: number = this.doc.getFontSize();
+        
+        this.setFontSize(fontSize);
+        const textHeight = this.getTextDimensions(text).h;
+
+        this.doc.setFontSize(oldFontSize);
+
+        return verticalPadding ? textHeight + verticalPadding : textHeight;
+    }
+
+    private formatDate(date: moment.Moment) {        
+        return date.isValid() ? date.format('YYYY') : 'Present';
+    }
 
     public build(): Blob {
         return this.doc.output('blob');
     }
-    
+
     private renderPersonalInformationSection(lines: string[]): void {
         const ICON_MARGIN = 7;
         const TAGS_SPACING = 10;
@@ -96,20 +185,20 @@ export class PDFResumeBuilder {
         lines.forEach(line => {
             const textDimensions = this.getTextDimensions(line);
             const newXPosition = this.cursorXCoordinate + textDimensions.w + TAGS_SPACING;
-            
+
             this.breakLineIfRequired(newXPosition + ICON_MARGIN);
 
             // TODO: Swap @ with the icon 
-            this.writeText('@');            
+            this.writeText('@');
             this.cursorXCoordinate += ICON_MARGIN;
-            this.writeText(line);            
+            this.writeText(line);
 
             this.cursorXCoordinate = newXPosition;
         });
 
     }
 
-    private renderSectionSeparator(sectionName: string) : void {
+    private renderSectionSeparator(sectionName: string): void {
         this.writeSubHeader(sectionName);
         this.cursorYCoordinate += 5;
         this.renderLineSeparator();
@@ -129,7 +218,7 @@ export class PDFResumeBuilder {
         );
     }
 
-    private getTextDimensions(text: string) : { w: number; h: number } {
+    private getTextDimensions(text: string): { w: number; h: number } {
         return this.doc.getTextDimensions(
             text,
             {
@@ -139,41 +228,42 @@ export class PDFResumeBuilder {
         );
     }
 
-    private breakLineIfRequired(newXPosition: number) {        
+    private breakLineIfRequired(newXPosition: number) {
         if (newXPosition > (this.PAGE_WIDTH - this.HORIZONTAL_PADDING)) {
             this.addLineBreak();
         }
     }
 
-    private addLineBreak(lineHeight?: number) : void {
+    private addLineBreak(lineHeight?: number): void {
         const DEFAULT_LINE_HEIGHT: number = 13;
-        this.cursorYCoordinate += lineHeight? lineHeight : DEFAULT_LINE_HEIGHT;
-        this.cursorXCoordinate = this.SIDE_BAR_WIDTH + this.HORIZONTAL_PADDING;
-    }   
+        this.cursorYCoordinate += lineHeight ? lineHeight : DEFAULT_LINE_HEIGHT;
+        this.cursorXCoordinate = this.LINE_START;
+    }
 
-    private writeSubHeader(text: string) : void {
-        this.setFontSize(16);        
+    private writeSubHeader(text: string): void {
+        this.setFontSize(16);
         this.writeText(text);
     }
 
-    private writeHeader(text: string) : void {
+    private writeHeader(text: string): void {
         this.setFontSize(28);
         this.writeText(text);
     }
 
-    private writeDefaultText(text: string) {
+    private writeDefaultText(text: string, alignRight?: boolean) {
         this.doc.setTextColor(this.DEFAULT_TEXT_COLOR);
         this.setFontSize(12);
-        this.writeText(text);
+        this.writeText(text, alignRight);
     }
 
-    private writeText(text: string): void {
+    private writeText(text: string, alignRight?: boolean): void {               
         this.doc.text(
-            text, 
-            this.cursorXCoordinate, 
+            text,
+            this.cursorXCoordinate,
             this.cursorYCoordinate,
             {
-                maxWidth: this.MAX_TEXT_WIDTH
+                maxWidth: this.MAX_TEXT_WIDTH,
+                align: alignRight ? 'right' : "left"
             }
         );
     }
