@@ -9,6 +9,8 @@ import { Position } from '../models/Position';
 import { Career } from '../models/Career';
 import { ProfessionalExperience } from '../models/ProfessionalExperience';
 import * as moment from "moment";
+import { TitleAndDescriptionPair } from '../models/TitleAndDescriptionPair';
+import { Skill } from '../models/Skill';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +34,35 @@ export class ResumeService {
   private getResumeContentFromConfiguration(websiteContent: WebsiteContent, resumeData: any): Resume {
 
     resumeData.professionalExperiences = this.getProfessionalExperience(websiteContent);
+    resumeData.achievements = this.getTitleAndDescriptionObjectFromConfiguration(resumeData.achievements);
+    resumeData.skills = this.getSkillsFromConfiguration(resumeData)
+    resumeData.languages = this.getTitleAndDescriptionObjectFromConfiguration(resumeData.languages);
     
     return new Resume({
       personalInformation: websiteContent.personalInformation,
       education: websiteContent.education,
       resumeData: resumeData      
     });
+  }
+
+  private getSkillsFromConfiguration(resumeData: any): TitleAndDescriptionPair[] {
+    let skills = [];
+
+    resumeData.skills.forEach(skill => {
+      skills.push(new Skill(skill));
+    });
+
+    return skills;
+  }
+  
+  private getTitleAndDescriptionObjectFromConfiguration(objArray: any[]): TitleAndDescriptionPair[] {
+    let results = [];
+
+    objArray.forEach(obj => {
+      results.push(new TitleAndDescriptionPair(obj));      
+    });
+
+    return results;
   }
 
   private getProfessionalExperience(websiteContent: WebsiteContent): ProfessionalExperience[] {

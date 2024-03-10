@@ -3,8 +3,9 @@ import { Resume } from "./Resume";
 import { Position } from "./Position";
 import { ProfessionalExperience } from "./ProfessionalExperience";
 import * as moment from "moment";
-import { DIR_DOCUMENT } from "@angular/cdk/bidi";
 import { Education } from "./Education";
+import { TitleAndDescriptionPair } from "./TitleAndDescriptionPair";
+import { Skill } from "./Skill";
 
 export class PDFResumeBuilder {
     private resume: Resume;
@@ -21,8 +22,21 @@ export class PDFResumeBuilder {
 
     private readonly DEFAULT_TEXT_COLOR = '#384347';
     private readonly MAX_TEXT_WIDTH = this.PAGE_WIDTH - (this.SIDE_BAR_WIDTH + this.HORIZONTAL_PADDING * 2);
+    private readonly MAX_SIDE_BAR_TEXT_WIDTH = this.SIDE_BAR_WIDTH - (this.HORIZONTAL_PADDING * 2);
     private readonly LINE_END = this.PAGE_WIDTH - this.HORIZONTAL_PADDING;
     private readonly LINE_START = this.SIDE_BAR_WIDTH + this.HORIZONTAL_PADDING;
+    private readonly SIDE_BAR_LINE_START = this.HORIZONTAL_PADDING;
+
+    private readonly SIDE_BAR_DEFAULT_TEXT_COLOR = "#FFFFFF";
+
+    private readonly SKILL_BAR_HEIGHT = 6;
+    
+    private readonly PROGRESS_BAR_FILL_HEIGHT = this.SKILL_BAR_HEIGHT - 1;
+    private readonly PROGRESS_BAR_FILL_MAX_WIDTH = this.MAX_SIDE_BAR_TEXT_WIDTH - 1;
+    private readonly PROGRESS_BAR_SPACE_WIDTH = 2;        
+    private readonly AMOUNT_OF_RECTS = 10;
+    private readonly AMOUNT_OF_SPACES = this.AMOUNT_OF_RECTS - 1;
+    private readonly PROGRESS_BAR_FILL_WIDTH = (this.PROGRESS_BAR_FILL_MAX_WIDTH - this.PROGRESS_BAR_SPACE_WIDTH * this.AMOUNT_OF_SPACES)/this.AMOUNT_OF_RECTS;    
 
     constructor(resume: Resume) {
         this.resume = resume;
@@ -40,15 +54,22 @@ export class PDFResumeBuilder {
         // this.doc.setFont('genera-altlight');
     }
 
+    // TODO: Projects (?)
     public withSideBar(): PDFResumeBuilder {
-        this.doc.setFillColor('#046864');
-        this.doc.rect(0, 0, this.SIDE_BAR_WIDTH, this.PAGE_HEIGHT, 'F');
+        this.renderSideBarBackground();
 
-        this.doc.setFillColor('#004747');
-        this.doc.rect(0, 0, this.SIDE_BAR_WIDTH, this.PAGE_HEIGHT * 0.013, 'F');
+        this.renderSidebarFirstPageShadow();
 
+        this.renderProfileImageComponent();        
+
+        this.renderAchievementsComponent();
+
+        this.renderSkillsComponent();        
+
+        this.renderLanguagesComponent();
+        
         return this;
-    }
+    }    
 
     public withHeader(): PDFResumeBuilder {
         this.cursorXCoordinate = this.LINE_START;
@@ -155,7 +176,7 @@ export class PDFResumeBuilder {
 
     private addPageBreak() {
         this.doc.addPage();
-        this.withSideBar();
+        this.renderSideBarBackground();
         this.cursorXCoordinate = this.LINE_START;
         this.cursorYCoordinate = this.VERTICAL_PADDING;
     }
@@ -253,9 +274,20 @@ export class PDFResumeBuilder {
         this.cursorXCoordinate = this.LINE_START;
     }
 
+    private addSideBarLineBreak(lineHeight?: number): void {
+        const DEFAULT_LINE_HEIGHT: number = 13;
+        this.cursorYCoordinate += lineHeight ? lineHeight : DEFAULT_LINE_HEIGHT;
+        this.cursorXCoordinate = this.SIDE_BAR_LINE_START;
+    }
+
     private writeSubHeader(text: string): void {
         this.setFontSize(16);
         this.writeText(text);
+    }
+    
+    private writeSideBarSubHeader(text: string): void {
+        this.setFontSize(16);
+        this.writeSideBarText(text);
     }
 
     private writeHighlightedSubtitle(text: string): void {
@@ -276,6 +308,12 @@ export class PDFResumeBuilder {
         this.writeText(text, alignRight);
     }
 
+    private writeDefaultSideBarText(text: string, alignRight?: boolean) {
+        this.doc.setTextColor(this.SIDE_BAR_DEFAULT_TEXT_COLOR);
+        this.setFontSize(12);
+        this.writeSideBarText(text, alignRight);
+    }
+
     private writeText(text: string, alignRight?: boolean): void {               
         this.doc.text(
             text,
@@ -288,7 +326,177 @@ export class PDFResumeBuilder {
         );
     }
 
+    private writeSideBarText(text: string, alignRight?: boolean): void {               
+        this.doc.text(
+            text,
+            this.cursorXCoordinate,
+            this.cursorYCoordinate,
+            {
+                maxWidth: this.MAX_SIDE_BAR_TEXT_WIDTH,
+                align: alignRight ? 'right' : "left"
+            }
+        );
+    }
+
     private setFontSize(size: number): void {
         this.doc.setFontSize(size * this.FONT_SIZE_SCALE);
+    }
+
+    private renderAchievementsComponent() {
+        this.renderSideBarSectionSeparator('ACHIEVEMENTS');
+
+        this.resume.achievements.forEach((achievement: TitleAndDescriptionPair) => {
+            this.writeSideBarSubHeader(achievement.title);
+            this.addSideBarLineBreak(this.getTextDimensions(achievement.title).h);
+            this.writeDefaultSideBarText(achievement.description);
+            this.addSideBarLineBreak(this.getTextDimensions(achievement.description).h);
+
+            this.addSideBarLineBreak();
+        });
+
+        this.addSideBarLineBreak();
+    }
+
+    private renderSideBarSectionSeparator(sectionName: string): void {
+        this.doc.setTextColor(this.SIDE_BAR_DEFAULT_TEXT_COLOR);
+        this.writeSubHeader(sectionName);
+        this.cursorYCoordinate += 5;
+        this.renderSideBarLineSeparator();
+
+        this.addSideBarLineBreak();
+    }
+
+    private renderSideBarLineSeparator() {
+        this.doc.setFillColor(this.SIDE_BAR_DEFAULT_TEXT_COLOR);
+
+        this.doc.line(
+            this.cursorXCoordinate,
+            this.cursorYCoordinate,
+            this.cursorXCoordinate + this.MAX_SIDE_BAR_TEXT_WIDTH,
+            this.cursorYCoordinate,
+            'F'
+        );
+    }
+
+    private renderProfileImageComponent() {
+        const PROFILE_IMG_WIDTH = this.SIDE_BAR_WIDTH * 0.4;
+        this.cursorXCoordinate = this.SIDE_BAR_WIDTH / 2 - PROFILE_IMG_WIDTH / 2;
+        this.cursorYCoordinate = this.VERTICAL_PADDING - this.doc.getLineHeight();;
+
+        this.doc.addImage(
+            '../../assets/img/profile-picture.jpeg',
+            'JPEG',
+            this.cursorXCoordinate,
+            this.cursorYCoordinate,
+            PROFILE_IMG_WIDTH,
+            PROFILE_IMG_WIDTH
+        );
+
+        this.addSideBarLineBreak(PROFILE_IMG_WIDTH + 20);        
+    }
+
+    private renderSidebarFirstPageShadow() {
+        this.doc.setFillColor('#004747');
+        this.doc.rect(0, 0, this.SIDE_BAR_WIDTH, this.PAGE_HEIGHT * 0.004, 'F');
+    }
+
+    private renderSideBarBackground() {
+        this.doc.setFillColor('#046864');
+        this.doc.rect(0, 0, this.SIDE_BAR_WIDTH, this.PAGE_HEIGHT, 'F');
+    }
+
+    private renderLanguagesComponent() {
+        this.renderSideBarSectionSeparator('LANGUAGES');
+        
+        this.resume.languages.forEach((language: TitleAndDescriptionPair) => {
+            const formatted: string = `• ${language.title} (${language.description})`;
+            this.writeSideBarSubHeader(formatted);
+            this.addSideBarLineBreak(this.getTextDimensions(formatted).h);
+            this.addSideBarLineBreak();
+        });
+
+        this.addSideBarLineBreak();
+    }
+
+    private renderSkillsComponent() {
+        this.renderSideBarSectionSeparator('PROFESSIONAL EXPERTISE');
+
+        this.resume.skills.forEach((skill: Skill) => {
+            this.writeSideBarSubHeader(skill.name);
+            this.addSideBarLineBreak(this.getTextDimensions(skill.name).h);
+            this.renderProgressBar(skill.level);
+            this.addSideBarLineBreak(this.SKILL_BAR_HEIGHT);
+            this.addSideBarLineBreak();
+        });
+
+        this.addSideBarLineBreak();
+    }
+
+    private renderProgressBar(level: number): void {
+        this.renderProgressBarBackground();
+        this.renderProgressBarFilling(level);
+    }
+
+    private renderProgressBarBackground(): void {
+        this.doc.roundedRect(
+            this.cursorXCoordinate, 
+            this.cursorYCoordinate,
+            this.MAX_SIDE_BAR_TEXT_WIDTH,
+            this.SKILL_BAR_HEIGHT,
+            3,
+            3,
+            'F'
+        );
+    }
+
+    private renderProgressBarFilling(level: number) : void {                
+        this.cursorYCoordinate += 0.5;
+        this.cursorXCoordinate += 0.5;
+        let isFirst: boolean = true;
+        let initialLevel: number = level;
+        
+        this.doc.setFillColor('#046864');        
+
+        while(level > 0) {
+            if(isFirst) {
+                isFirst = false;
+                this.drawEdgeProgressIndicator();                                
+            } else if(level == 1 && initialLevel == 10) {
+                this.drawEdgeProgressIndicator(true);
+            } else {
+                this.doc.rect(
+                    this.cursorXCoordinate, 
+                    this.cursorYCoordinate, 
+                    this.PROGRESS_BAR_FILL_WIDTH, 
+                    this.PROGRESS_BAR_FILL_HEIGHT, 
+                    'F'
+                );
+            }                    
+
+            this.cursorXCoordinate += this.PROGRESS_BAR_SPACE_WIDTH + this.PROGRESS_BAR_FILL_WIDTH;
+            level--;
+        }       
+    }
+
+    private drawEdgeProgressIndicator(right?: boolean) {                
+        this.doc.roundedRect(
+            this.cursorXCoordinate, 
+            this.cursorYCoordinate,
+            this.PROGRESS_BAR_FILL_WIDTH,
+            this.PROGRESS_BAR_FILL_HEIGHT,
+            3,
+            3,
+            'F'
+        );
+        
+        const HALF_PROGRESS_BAR_FILL_WIDTH = this.PROGRESS_BAR_FILL_WIDTH / 2;
+        
+        this.doc.rect(
+            right ? this.cursorXCoordinate : this.cursorXCoordinate + HALF_PROGRESS_BAR_FILL_WIDTH,
+            this.cursorYCoordinate,
+            HALF_PROGRESS_BAR_FILL_WIDTH,
+            this.PROGRESS_BAR_FILL_HEIGHT,
+            'F'
+        );
     }
 }
