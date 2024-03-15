@@ -13,12 +13,16 @@ import { PDFUtils } from "../utils/PDFUtils";
 import { SkillRenderer } from "./components/SkillRenderer";
 import { LanguageRenderer } from "./components/LanguageRenderer";
 import { PDFConstants } from "../utils/PDFConstants";
+import { PDFComponentRenderer } from "./components/PDFComponentRenderer";
 
 export class PDFResumeBuilder {
     private resume: Resume;
     private doc: jsPDF;
     private cursorXCoordinate: number;
     private cursorYCoordinate: number;
+
+    private pdf: PDFDocument;
+    private utils: PDFUtils;
 
     private readonly PAGE_HEIGHT: number = 632;
     private readonly PAGE_WIDTH: number = 447;
@@ -36,69 +40,39 @@ export class PDFResumeBuilder {
         this.resume = resume;
         this.doc = new jsPDF({ unit: 'px' });
         this.cursorXCoordinate = 0;
-        this.cursorYCoordinate = 0;        
+        this.cursorYCoordinate = 0;    
+        
+        this.pdf = new PDFDocument(this.doc, this.cursorXCoordinate, this.cursorYCoordinate); 
+        this.utils = new PDFUtils(this.pdf);   
     };    
 
     // TODO: Projects (?)
     public withSideBar(): PDFResumeBuilder {
         this.renderSideBarBackground();
         this.renderSidebarFirstPageShadow();
-        
-        const pdf: PDFDocument = new PDFDocument(this.doc, this.cursorXCoordinate, this.cursorYCoordinate);
-        const utils: PDFUtils = new PDFUtils(pdf);
-        
-        this.renderProfileImage(pdf, utils);        
-        this.renderAchievementsComponent(pdf, utils);
-        this.renderSkillsComponent(pdf, utils);
-        this.renderLanguagesComponent(pdf, utils);
+                
+        this.renderProfileImage();
+
+        this.renderPDFComponent(
+            'ACHIEVEMENTS', 
+            new AchievementRenderer(this.utils), 
+            this.resume.achievements
+        );
+
+        this.renderPDFComponent(
+            'PROFESSIONAL EXPERTISE', 
+            new SkillRenderer(this.pdf, this.utils), 
+            this.resume.skills
+        );
+
+        this.renderPDFComponent(
+            'LANGUAGES', 
+            new LanguageRenderer(this.utils), 
+            this.resume.languages
+        );        
         
         return this;
     }    
-
-    // TODO: Deal with possible pagination
-    private renderLanguagesComponent(pdf: PDFDocument, utils: PDFUtils): void {
-        const languageRenderer: LanguageRenderer = new LanguageRenderer(pdf, utils);
-        utils.sideBar.renderSectionSeparator('LANGUAGES');
-        
-        this.resume.languages.forEach((language: TitleAndDescriptionPair) => {
-            languageRenderer.language = language;
-            languageRenderer.render();
-        });
-
-        utils.sideBar.addLineBreak();
-    }    
-
-    // TODO: Deal with possible pagination
-    private renderSkillsComponent(pdf: PDFDocument, utils: PDFUtils): void {        
-        const skillRenderer: SkillRenderer = new SkillRenderer(pdf, utils);
-
-        utils.sideBar.renderSectionSeparator('PROFESSIONAL EXPERTISE');
-
-        this.resume.skills.forEach((skill: Skill) => {
-            skillRenderer.skill = skill;
-            skillRenderer.render();
-        });
-
-        utils.sideBar.addLineBreak();
-    }
-
-    // TODO: Deal with possible pagination
-    private renderAchievementsComponent(pdf: PDFDocument, utils: PDFUtils) {
-        const achievementRenderer: AchievementRenderer = new AchievementRenderer(pdf, utils);
-        utils.sideBar.renderSectionSeparator('ACHIEVEMENTS');
-
-        this.resume.achievements.forEach((achievement: TitleAndDescriptionPair) => {
-            achievementRenderer.achievement = achievement;
-            achievementRenderer.render();
-        });
-
-        utils.sideBar.addLineBreak();
-    }
-
-    private renderProfileImage(pdf: PDFDocument, utils: PDFUtils) {
-        const imageRenderer: ProfileImageRenderer = new ProfileImageRenderer(pdf, utils);
-        imageRenderer.render();
-    }
 
     public withHeader(): PDFResumeBuilder {
         this.cursorXCoordinate = this.LINE_START;
@@ -342,15 +316,33 @@ export class PDFResumeBuilder {
         this.doc.setFontSize(size * this.FONT_SIZE_SCALE);
     }       
 
-    private renderSidebarFirstPageShadow() {
+    private renderSidebarFirstPageShadow(): void {
         const SHADOW_COLOR = '#004747';
         this.doc.setFillColor(SHADOW_COLOR);
         this.doc.rect(0, 0, PDFConstants.SIDE_BAR.WIDTH, PDFConstants.PAGE_HEIGHT * 0.004, 'F');
     }
 
-    private renderSideBarBackground() {
+    private renderSideBarBackground(): void {
         this.doc.setFillColor(PDFConstants.SIDE_BAR.BACKGROUND_COLOR);
         this.doc.rect(0, 0, PDFConstants.SIDE_BAR.WIDTH, PDFConstants.PAGE_HEIGHT, 'F');
+    }
+
+    // TODO: Deal with possible pagination
+    private renderPDFComponent(title: string, renderer: PDFComponentRenderer<any>, list: any[]): void {        
+        this.utils.sideBar.renderSectionSeparator(title);
+        
+        list.forEach((obj: any) => {
+            renderer.setTarget(obj);
+            renderer.render();
+        });
+
+        this.utils.sideBar.addLineBreak();
+    }
+
+    private renderProfileImage() {
+        const renderer: ProfileImageRenderer = new ProfileImageRenderer(this.pdf, this.utils);
+        renderer.setTarget('../../assets/img/profile-picture.jpeg');
+        renderer.render();
     }
     
 }

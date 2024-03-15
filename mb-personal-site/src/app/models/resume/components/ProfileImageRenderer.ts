@@ -3,20 +3,25 @@ import { PDFConstants } from "../../utils/PDFConstants";
 import { PDFSideBarUtils } from "../../utils/PDFSideBarUtils";
 import { PDFDocument } from "../../utils/PDFDocument";
 import { PDFUtils } from "../../utils/PDFUtils";
+import { PDFComponentRenderer } from "./PDFComponentRenderer";
 
-export class ProfileImageRenderer {
+export class ProfileImageRenderer implements PDFComponentRenderer<string> {
 
     private pdf: PDFDocument;    
     private utils: PDFSideBarUtils;
+    private imagePath: string;
 
     constructor(pdf: PDFDocument, utils: PDFUtils) {
         this.pdf = pdf;
         this.utils = utils.sideBar;
+    }   
+    
+    public setTarget(obj: string): void {
+        this.imagePath = obj;
     }
 
     public render(): void {
         const dimensions: Dimensions = this.getDimensions();        
-        const IMAGE_PATH = '../../assets/img/profile-picture.jpeg';
         const IMAGE_TYPE = 'JPEG';
 
         this.pdf.moveTo(
@@ -25,7 +30,7 @@ export class ProfileImageRenderer {
         );        
 
         this.pdf.doc.addImage(
-            IMAGE_PATH,
+            this.imagePath,
             IMAGE_TYPE,
             this.pdf.cursorXCoordinate,
             this.pdf.cursorYCoordinate,

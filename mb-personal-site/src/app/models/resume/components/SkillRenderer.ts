@@ -4,8 +4,9 @@ import { PDFDocument } from "../../utils/PDFDocument";
 import { PDFSideBarUtils } from "../../utils/PDFSideBarUtils";
 import { PDFUtils } from "../../utils/PDFUtils";
 import { Skill } from "../Skill";
+import { PDFComponentRenderer } from "./PDFComponentRenderer";
 
-export class SkillRenderer {
+export class SkillRenderer implements PDFComponentRenderer<Skill> {
     public skill: Skill;
     
     private utils: PDFSideBarUtils;
@@ -25,6 +26,10 @@ export class SkillRenderer {
         this.pdf = pdf;       
         this.utils = utils.sideBar;        
     }    
+
+    public setTarget(obj: Skill): void {
+        this.skill = obj;
+    }
 
     public render(): void {
         this.utils.writeSubHeader(this.skill.name);
