@@ -1,6 +1,6 @@
-import { Education } from "./Education";
-import { PersonalInformation } from "./PersonalInformation";
-import { Position } from "./Position";
+import { Education } from "../site-content/Education";
+import { PersonalInformation } from "../site-content/PersonalInformation";
+import { Position } from "../site-content/Position";
 
 export class ProfessionalExperience {
     

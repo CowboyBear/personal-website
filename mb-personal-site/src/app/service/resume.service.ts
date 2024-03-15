@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
-import { Resume } from '../models/Resume';
+import { Resume } from '../models/resume/Resume';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { WebSiteContentService } from './web-site-content.service';
-import { WebsiteContent } from '../models/WebsiteContent';
-import { Position } from '../models/Position';
-import { Career } from '../models/Career';
-import { ProfessionalExperience } from '../models/ProfessionalExperience';
+import { WebsiteContent } from '../models/site-content/WebsiteContent';
+import { Position } from '../models/site-content/Position';
+import { Career } from '../models/site-content/Career';
+import { ProfessionalExperience } from '../models/resume/ProfessionalExperience';
 import * as moment from "moment";
-import { TitleAndDescriptionPair } from '../models/TitleAndDescriptionPair';
-import { Skill } from '../models/Skill';
+import { TitleAndDescriptionPair } from '../models/utils/TitleAndDescriptionPair';
+import { Skill } from '../models/resume/Skill';
 
 @Injectable({
   providedIn: 'root'

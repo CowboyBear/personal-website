@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Career } from '../models/Career';
-import { Education } from '../models/Education';
-import { PersonalInformation } from '../models/PersonalInformation';
-import { Position } from '../models/Position';
-import { Project } from '../models/Project';
-import { TechnicalKnowledge } from '../models/TechnicalKnowledge';
-import { WebsiteContent } from '../models/WebsiteContent';
+import { Career } from '../models/site-content/Career';
+import { Education } from '../models/site-content/Education';
+import { PersonalInformation } from '../models/site-content/PersonalInformation';
+import { Position } from '../models/site-content/Position';
+import { Project } from '../models/site-content/Project';
+import { TechnicalKnowledge } from '../models/site-content/TechnicalKnowledge';
+import { WebsiteContent } from '../models/site-content/WebsiteContent';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class WebSiteContentService {
       }
     );
   }
-  private getEducationFromConfiguration(configuration: any): import("../models/Education").Education[] {
+  private getEducationFromConfiguration(configuration: any): import("../models/site-content/Education").Education[] {
     const education: Education[] = [];
 
     configuration.forEach(educationItem => {

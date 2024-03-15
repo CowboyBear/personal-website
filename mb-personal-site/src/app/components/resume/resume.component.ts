@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { PDFResumeBuilder } from 'src/app/models/PDFResumeBuilder';
+import { PDFResumeBuilder } from 'src/app/models/resume/PDFResumeBuilder';
 import { ResumeService } from 'src/app/service/resume.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { ResumeService } from 'src/app/service/resume.service';
 })
 export class ResumeComponent {  
 
-  public resumeUrl: SafeResourceUrl;// = this.sanitizer.bypassSecurityTrustResourceUrl(window.location.origin);
+  public resumeUrl: SafeResourceUrl;
   
   constructor(private resumeService: ResumeService, private sanitizer: DomSanitizer) {
     resumeService.get().subscribe(

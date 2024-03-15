@@ -1,6 +1,6 @@
-import { TitleAndDescriptionPair } from "./TitleAndDescriptionPair";
-import { Education } from "./Education";
-import { PersonalInformation } from "./PersonalInformation";
+import { TitleAndDescriptionPair } from "../utils/TitleAndDescriptionPair";
+import { Education } from "../site-content/Education";
+import { PersonalInformation } from "../site-content/PersonalInformation";
 import { ProfessionalExperience } from "./ProfessionalExperience";
 import { Skill } from "./Skill";
 

@@ -1,10 +1,10 @@
 import { jsPDF } from "jspdf";
 import { Resume } from "./Resume";
-import { Position } from "./Position";
+import { Position } from "../site-content/Position";
 import { ProfessionalExperience } from "./ProfessionalExperience";
 import * as moment from "moment";
-import { Education } from "./Education";
-import { TitleAndDescriptionPair } from "./TitleAndDescriptionPair";
+import { Education } from "../site-content/Education";
+import { TitleAndDescriptionPair } from "../utils/TitleAndDescriptionPair";
 import { Skill } from "./Skill";
 
 export class PDFResumeBuilder {
