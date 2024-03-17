@@ -24,8 +24,8 @@ export class ResumeComponent {
           .withSideBar()
           .withHeader()
           .withSummary()
-          .withProfessionalExperience()
-          .withEducation()
+          // .withProfessionalExperience()
+          // .withEducation()
           .build();
 
         const localPdfUrl: string = URL.createObjectURL(blob);        

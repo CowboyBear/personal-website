@@ -4,16 +4,16 @@ import { Position } from "../site-content/Position";
 import { ProfessionalExperience } from "./ProfessionalExperience";
 import * as moment from "moment";
 import { Education } from "../site-content/Education";
-import { TitleAndDescriptionPair } from "../utils/TitleAndDescriptionPair";
-import { Skill } from "./Skill";
-import { ProfileImageRenderer } from "./components/ProfileImageRenderer";
+import { ProfileImageRenderer } from "./component-renderers/side-bar/ProfileImageRenderer";
 import { PDFDocument } from "../utils/PDFDocument";
-import { AchievementRenderer } from "./components/AchievementRenderer";
+import { AchievementRenderer } from "./component-renderers/side-bar/AchievementRenderer";
 import { PDFUtils } from "../utils/PDFUtils";
-import { SkillRenderer } from "./components/SkillRenderer";
-import { LanguageRenderer } from "./components/LanguageRenderer";
+import { SkillRenderer } from "./component-renderers/side-bar/SkillRenderer";
+import { LanguageRenderer } from "./component-renderers/side-bar/LanguageRenderer";
 import { PDFConstants } from "../utils/PDFConstants";
-import { PDFComponentRenderer } from "./components/PDFComponentRenderer";
+import { PDFComponentRenderer } from "./component-renderers/PDFComponentRenderer";
+import { HeaderRenderer } from "./component-renderers/main-content/HeaderRenderer";
+import { SummaryRenderer } from "./component-renderers/main-content/SummaryRenderer";
 
 export class PDFResumeBuilder {
     private resume: Resume;
@@ -75,39 +75,17 @@ export class PDFResumeBuilder {
     }    
 
     public withHeader(): PDFResumeBuilder {
-        this.cursorXCoordinate = this.LINE_START;
-        this.cursorYCoordinate = this.VERTICAL_PADDING;
-
-        this.doc.setTextColor(this.DEFAULT_TEXT_COLOR);
-        this.writeHeader(this.resume.personalInformation.name.toUpperCase());
-
-        this.addLineBreak();
-
-        const POSITION_COLOR = '#1ab0b3';
-        this.doc.setTextColor(POSITION_COLOR);
-        this.writeSubHeader('Application Architect | IT Manager'); // TODO: Add this to the resume config
-
-        this.addLineBreak();
-
-        this.renderPersonalInformationSection([
-            this.resume.personalInformation.email,
-            this.resume.personalInformation.github,
-            'Curitiba, PR', // TODO: Add this to the resume config
-            window.location.origin
-        ]);
-
-        this.addLineBreak(26);        
+        const renderer: HeaderRenderer = new HeaderRenderer(this.pdf, this.utils);
+        renderer.setTarget(this.resume.personalInformation);
+        renderer.render();
 
         return this;
     }
 
     public withSummary(): PDFResumeBuilder {
-        this.renderSectionSeparator('SUMMARY');
-
-        this.writeDefaultText(this.resume.summary);
-
-        this.cursorYCoordinate += this.getTextDimensions(this.resume.summary).h;
-        this.addLineBreak();
+        const renderer: SummaryRenderer = new SummaryRenderer(this.pdf, this.utils);
+        renderer.setTarget(this.resume.summary);
+        renderer.render();        
 
         return this;
     }
@@ -211,29 +189,7 @@ export class PDFResumeBuilder {
 
     public build(): Blob {
         return this.doc.output('blob');
-    }
-
-    private renderPersonalInformationSection(lines: string[]): void {
-        const ICON_MARGIN = 7;
-        const TAGS_SPACING = 10;
-        this.setFontSize(13);
-        this.doc.setTextColor(this.DEFAULT_TEXT_COLOR);
-
-        lines.forEach(line => {
-            const textDimensions = this.getTextDimensions(line);
-            const newXPosition = this.cursorXCoordinate + textDimensions.w + TAGS_SPACING;
-
-            this.breakLineIfRequired(newXPosition + ICON_MARGIN);
-
-            // TODO: Swap @ with the icon 
-            this.writeText('@');
-            this.cursorXCoordinate += ICON_MARGIN;
-            this.writeText(line);
-
-            this.cursorXCoordinate = newXPosition;
-        });
-
-    }
+    }    
 
     private renderSectionSeparator(sectionName: string): void {
         this.writeSubHeader(sectionName);
@@ -263,13 +219,7 @@ export class PDFResumeBuilder {
                 maxWidth: this.MAX_TEXT_WIDTH
             }
         );
-    }
-
-    private breakLineIfRequired(newXPosition: number) {
-        if (newXPosition > (this.PAGE_WIDTH - this.HORIZONTAL_PADDING)) {
-            this.addLineBreak();
-        }
-    }
+    }   
 
     private addLineBreak(lineHeight?: number): void {
         const DEFAULT_LINE_HEIGHT: number = 13;
@@ -287,11 +237,6 @@ export class PDFResumeBuilder {
         this.doc.setTextColor(SUBTITLE_TEXT_COLOR);
         this.setFontSize(14);
         this.writeText(text);        
-    }
-
-    private writeHeader(text: string): void {
-        this.setFontSize(28);
-        this.writeText(text);
     }
 
     private writeDefaultText(text: string, alignRight?: boolean) {

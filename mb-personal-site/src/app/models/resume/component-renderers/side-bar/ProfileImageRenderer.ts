@@ -1,9 +1,9 @@
-import { Dimensions } from "../../utils/Dimensions";
-import { PDFConstants } from "../../utils/PDFConstants";
-import { PDFSideBarUtils } from "../../utils/PDFSideBarUtils";
-import { PDFDocument } from "../../utils/PDFDocument";
-import { PDFUtils } from "../../utils/PDFUtils";
-import { PDFComponentRenderer } from "./PDFComponentRenderer";
+import { Dimensions } from "../../../utils/Dimensions";
+import { PDFConstants } from "../../../utils/PDFConstants";
+import { PDFSideBarUtils } from "../../../utils/PDFSideBarUtils";
+import { PDFDocument } from "../../../utils/PDFDocument";
+import { PDFUtils } from "../../../utils/PDFUtils";
+import { PDFComponentRenderer } from "../PDFComponentRenderer";
 
 export class ProfileImageRenderer implements PDFComponentRenderer<string> {
 

@@ -1,10 +1,10 @@
-import { Dimensions } from "../../utils/Dimensions";
-import { PDFConstants } from "../../utils/PDFConstants";
-import { PDFDocument } from "../../utils/PDFDocument";
-import { PDFSideBarUtils } from "../../utils/PDFSideBarUtils";
-import { PDFUtils } from "../../utils/PDFUtils";
-import { Skill } from "../Skill";
-import { PDFComponentRenderer } from "./PDFComponentRenderer";
+import { Dimensions } from "../../../utils/Dimensions";
+import { PDFConstants } from "../../../utils/PDFConstants";
+import { PDFDocument } from "../../../utils/PDFDocument";
+import { PDFSideBarUtils } from "../../../utils/PDFSideBarUtils";
+import { PDFUtils } from "../../../utils/PDFUtils";
+import { Skill } from "../../Skill";
+import { PDFComponentRenderer } from "../PDFComponentRenderer";
 
 export class SkillRenderer implements PDFComponentRenderer<Skill> {
     public skill: Skill;

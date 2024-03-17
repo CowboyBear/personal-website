@@ -1,9 +1,9 @@
-import { Dimensions } from "../../utils/Dimensions";
-import { PDFDocument } from "../../utils/PDFDocument";
-import { TitleAndDescriptionPair } from "../../utils/TitleAndDescriptionPair";
-import { PDFUtils } from "../../utils/PDFUtils";
-import { PDFSideBarUtils } from "../../utils/PDFSideBarUtils";
-import { PDFComponentRenderer } from "./PDFComponentRenderer";
+import { Dimensions } from "../../../utils/Dimensions";
+import { PDFDocument } from "../../../utils/PDFDocument";
+import { TitleAndDescriptionPair } from "../../../utils/TitleAndDescriptionPair";
+import { PDFUtils } from "../../../utils/PDFUtils";
+import { PDFSideBarUtils } from "../../../utils/PDFSideBarUtils";
+import { PDFComponentRenderer } from "../PDFComponentRenderer";
 
 export class AchievementRenderer implements PDFComponentRenderer<TitleAndDescriptionPair> {
 
