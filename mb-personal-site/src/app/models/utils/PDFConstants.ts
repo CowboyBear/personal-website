@@ -4,7 +4,10 @@ export class PDFConstants {
     public static readonly HORIZONTAL_PADDING: number = 20;
     public static readonly VERTICAL_PADDING: number = 30;
     public static readonly FONT_SIZE_SCALE: number = 0.571;  
-    public static readonly TEXT_COLOR = '#384347';         
+    public static readonly TEXT_COLOR = '#384347';  
+    public static readonly DEFAULT_LINE_HEIGHT: number = 13;
+    public static readonly CYAN_COLOR = '#1ab0b3';  
+
 
     public static readonly SIDE_BAR: any = class {
         public static readonly WIDTH = PDFConstants.PAGE_WIDTH * 0.35;

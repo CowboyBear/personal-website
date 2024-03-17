@@ -10,12 +10,10 @@ export class PDFSideBarUtils {
         this.pdf = pdf;              
     }
     
-    public addLineBreak(lineHeight?: number): void {
-        const DEFAULT_LINE_HEIGHT: number = 13;
-        
+    public addLineBreak(lineHeight?: number): void {                
         this.pdf.moveTo(
             PDFConstants.SIDE_BAR.LINE_START,
-            this.pdf.cursorYCoordinate + (lineHeight ?? DEFAULT_LINE_HEIGHT)
+            this.pdf.cursorYCoordinate + (lineHeight ?? PDFConstants.DEFAULT_LINE_HEIGHT)
         );        
     }
 

@@ -22,7 +22,6 @@ export class ProfileImageRenderer implements PDFComponentRenderer<string> {
 
     public render(): void {
         const dimensions: Dimensions = this.getDimensions();        
-        const IMAGE_TYPE = 'JPEG';
 
         this.pdf.moveTo(
             PDFConstants.SIDE_BAR.WIDTH / 2 - dimensions.width / 2,
@@ -31,7 +30,7 @@ export class ProfileImageRenderer implements PDFComponentRenderer<string> {
 
         this.pdf.doc.addImage(
             this.imagePath,
-            IMAGE_TYPE,
+            this.getImageType(),
             this.pdf.cursorXCoordinate,
             this.pdf.cursorYCoordinate,
             dimensions.width,
@@ -41,13 +40,16 @@ export class ProfileImageRenderer implements PDFComponentRenderer<string> {
         this.utils.addLineBreak(dimensions.height);
     }
 
-    public getDimensions(): Dimensions{
-        const IMAGE_WIDTH = this.getImageWidth();        
-        return new Dimensions(IMAGE_WIDTH, IMAGE_WIDTH + this.getBottomPadding());
+    private getImageType() {
+        let matches = this.imagePath.match(/\.(?<format>\w*)$/);        
+        return matches[1].toUpperCase();
     }
 
-    private getBottomPadding(): number {
-        return 20;
+    public getDimensions(): Dimensions{
+        const IMAGE_WIDTH = this.getImageWidth();        
+        const BOTTOM_PADDING = 20;
+
+        return new Dimensions(IMAGE_WIDTH, IMAGE_WIDTH +  BOTTOM_PADDING);
     }
 
     private getImageWidth(): number {

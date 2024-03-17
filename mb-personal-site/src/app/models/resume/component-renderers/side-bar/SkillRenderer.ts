@@ -38,8 +38,7 @@ export class SkillRenderer implements PDFComponentRenderer<Skill> {
         this.renderBackground();
         this.renderProgress(this.skill.level);
 
-        this.utils.addLineBreak(this.BACKGROUND_HEIGHT);
-        this.utils.addLineBreak();
+        this.utils.addLineBreak(PDFConstants.DEFAULT_LINE_HEIGHT + this.BACKGROUND_HEIGHT);        
     }
 
     public getDimensions(): Dimensions{
@@ -95,7 +94,7 @@ export class SkillRenderer implements PDFComponentRenderer<Skill> {
         }       
     }
 
-    private drawEdgeProgressIndicator(right?: boolean) {                
+    private drawEdgeProgressIndicator(right?: boolean): void {                
         this.pdf.doc.roundedRect(
             this.pdf.cursorXCoordinate, 
             this.pdf.cursorYCoordinate,

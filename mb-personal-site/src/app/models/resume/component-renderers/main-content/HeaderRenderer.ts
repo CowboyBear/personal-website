@@ -26,9 +26,8 @@ export class HeaderRenderer implements PDFComponentRenderer<PersonalInformation>
         this.utils.writeHeader(this.personalInformation.name.toUpperCase());
 
         this.utils.addLineBreak();
-
-        const POSITION_COLOR = '#1ab0b3'; // TODO: This should be a constant
-        this.pdf.doc.setTextColor(POSITION_COLOR);
+        
+        this.pdf.doc.setTextColor(PDFConstants.CYAN_COLOR);
         this.utils.writeSubHeader('Application Architect | IT Manager'); // TODO: Add this to the resume config
 
         this.utils.addLineBreak();
@@ -40,7 +39,7 @@ export class HeaderRenderer implements PDFComponentRenderer<PersonalInformation>
             window.location.origin
         ]);
 
-        this.utils.addLineBreak(26);
+        this.utils.addLineBreak(PDFConstants.DEFAULT_LINE_HEIGHT * 2);
     }
     
     public getDimensions(): Dimensions {

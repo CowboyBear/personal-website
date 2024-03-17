@@ -37,7 +37,7 @@ export class PDFResumeBuilder {
 
         this.utils.renderSimpleComponent(
             new ProfileImageRenderer(this.pdf, this.utils),
-            '../../assets/img/profile-picture.jpeg'
+            `../../${this.resume.personalInformation.profilePictureSrc}`            
         );
 
         this.utils.sideBar.renderSection(

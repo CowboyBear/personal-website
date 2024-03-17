@@ -24,9 +24,8 @@ export class PDFUtils {
         this.writeText(text);
     }  
     
-    public writeHighlightedSubtitle(text: string): void {
-        const SUBTITLE_TEXT_COLOR = '#1ab0b3';
-        this.pdf.doc.setTextColor(SUBTITLE_TEXT_COLOR);
+    public writeHighlightedSubtitle(text: string): void {        
+        this.pdf.doc.setTextColor(PDFConstants.CYAN_COLOR);
         this.pdf.setFontSize(14);
         this.writeText(text);        
     }

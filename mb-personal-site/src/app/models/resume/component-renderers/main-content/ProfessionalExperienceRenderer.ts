@@ -15,6 +15,8 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
     private titleRenderer: TitleWithPeriodRenderer;
     private textRenderer: DefaultTextRenderer;
 
+    private readonly SUBTITLE_VERTICAL_PADDING = 2;
+
     constructor(pdf: PDFDocument, utils: PDFUtils) {
         this.pdf = pdf;
         this.utils = utils;
@@ -38,7 +40,7 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
             this.titleRenderer.render();
 
             this.utils.writeHighlightedSubtitle(this.experience.company);            
-            this.utils.addLineBreak(this.utils.getTextDimensions(this.experience.company).height + 2);
+            this.utils.addLineBreak(this.utils.getTextDimensions(this.experience.company).height + this.SUBTITLE_VERTICAL_PADDING);
 
             this.utils.writeDefaultText(position.description);
             
@@ -54,12 +56,11 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
     public getDimensions(): Dimensions {        
         const titleDimensions: Dimensions = this.titleRenderer.getDimensions();
         const descriptionDimensions: Dimensions = this.textRenderer.getDimensions();
-        const subtitleDimensions: Dimensions = this.utils.simulateTextDimensions(this.experience.company, 14);                            
-        const SUBTITLE_VERTICAL_PADDING = 2;
+        const subtitleDimensions: Dimensions = this.utils.simulateTextDimensions(this.experience.company, 14);                                    
 
         return new Dimensions(
             Math.max(titleDimensions.width, descriptionDimensions.width, subtitleDimensions.width),
-            titleDimensions.height + descriptionDimensions.height + subtitleDimensions.height + SUBTITLE_VERTICAL_PADDING
+            titleDimensions.height + descriptionDimensions.height + subtitleDimensions.height + this.SUBTITLE_VERTICAL_PADDING
         );
     }      
 }
