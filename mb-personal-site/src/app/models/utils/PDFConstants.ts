@@ -15,5 +15,6 @@ export class PDFConstants {
     };        
 
     public static readonly LINE_START = PDFConstants.SIDE_BAR.WIDTH + PDFConstants.HORIZONTAL_PADDING;   
+    public static readonly LINE_END = this.PAGE_WIDTH - this.HORIZONTAL_PADDING;
     public static readonly MAX_TEXT_WIDTH = this.PAGE_WIDTH - (PDFConstants.SIDE_BAR.WIDTH + this.HORIZONTAL_PADDING * 2);
 }

@@ -1,3 +1,4 @@
+import { PDFComponentRenderer } from "../resume/component-renderers/PDFComponentRenderer";
 import { Dimensions } from "./Dimensions";
 import { PDFConstants } from "./PDFConstants";
 import { PDFDocument } from "./PDFDocument";
@@ -49,6 +50,17 @@ export class PDFSideBarUtils {
 
         return new Dimensions(w, h);
     }
+
+    public renderSection(title: string, renderer: PDFComponentRenderer<any>, list: any[]): void {
+        this.renderSectionSeparator(title);
+
+        list.forEach((obj: any) => {
+            renderer.setTarget(obj);
+            renderer.render();
+        });
+
+        this.addLineBreak();
+    }    
 
     private writeText(text: string, alignRight?: boolean): void {                                         
 
