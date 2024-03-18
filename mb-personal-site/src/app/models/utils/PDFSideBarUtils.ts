@@ -2,6 +2,7 @@ import { PDFComponentRenderer } from "../resume/component-renderers/PDFComponent
 import { Dimensions } from "./Dimensions";
 import { PDFConstants } from "./PDFConstants";
 import { PDFDocument } from "./PDFDocument";
+import { PDFUtils } from "./PDFUtils";
 
 export class PDFSideBarUtils {
     private pdf: PDFDocument;    
@@ -54,11 +55,17 @@ export class PDFSideBarUtils {
 
         list.forEach((obj: any) => {
             renderer.setTarget(obj);
+            this.handlePagination(renderer.getDimensions().height);
             renderer.render();
         });
 
         this.addLineBreak();
-    }    
+    }   
+    
+    private handlePagination(height: number) {
+        let utils = new PDFUtils(this.pdf);
+        utils.handlePagination(height);
+    }
 
     private writeText(text: string, alignRight?: boolean): void {                                         
 

@@ -22,7 +22,7 @@ export class TitleWithPeriodRenderer implements PDFComponentRenderer<TitleWithPe
         this.utils.renderTitleWithPeriodComponent(this.titleWithPeriod.title, this.titleWithPeriod.startDate, this.titleWithPeriod.endDate);
     }
     
-    public getDimensions(): Dimensions {
+    public getDimensions(): Dimensions {        
         const TITLE_VERTICAL_PADDING = 5;
         
         let dimensions: Dimensions = this.utils.simulateTextDimensions(this.titleWithPeriod.title, 16);

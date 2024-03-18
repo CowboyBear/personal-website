@@ -21,10 +21,12 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
         this.pdf = pdf;
         this.utils = utils;
 
-        this.titleRenderer = new TitleWithPeriodRenderer(this.pdf, this.utils);
+        this.titleRenderer = new TitleWithPeriodRenderer(this.pdf, this.utils);         
+        this.titleRenderer.setTarget(this.utils.createStubTitle());
         this.textRenderer = new DefaultTextRenderer(this.pdf, this.utils);
-    } 
-    
+        this.textRenderer.setTarget('');
+    }     
+
     public setTarget(obj: ProfessionalExperience): void {
         this.experience = obj;
     }
@@ -32,10 +34,10 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
     // TODO: Maybe, revert the order of titles: First list the company, then the positions
     public render(): void {
         this.experience.positions.forEach((position: Position) => {                        
-            this.titleRenderer.setTarget(position);                        
+            this.titleRenderer.setTarget(position);
             this.textRenderer.setTarget(position.description);
-
-            this.utils.handlePageBreak(this.getDimensions().height);
+                        
+            this.utils.handlePagination(this.getDimensions().height);
 
             this.titleRenderer.render();
 
@@ -62,5 +64,6 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
             Math.max(titleDimensions.width, descriptionDimensions.width, subtitleDimensions.width),
             titleDimensions.height + descriptionDimensions.height + subtitleDimensions.height + this.SUBTITLE_VERTICAL_PADDING
         );
-    }      
+    }     
+        
 }

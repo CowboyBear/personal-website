@@ -26,6 +26,7 @@ export class HeaderRenderer implements PDFComponentRenderer<ResumeHeader> {
     }
     
     public render(): void {
+        this.pdf.doc.setPage(1);
         this.pdf.moveTo(PDFConstants.LINE_START, PDFConstants.VERTICAL_PADDING);        
 
         this.pdf.doc.setTextColor(PDFConstants.TEXT_COLOR);

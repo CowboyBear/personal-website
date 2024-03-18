@@ -1,4 +1,6 @@
+import * as moment from "moment";
 import { PDFComponentRenderer } from "../resume/component-renderers/PDFComponentRenderer";
+import { TitleWithPeriod } from "../resume/component-renderers/utils/TitleWithPeriod";
 import { Dimensions } from "./Dimensions";
 import { PDFConstants } from "./PDFConstants";
 import { PDFDocument } from "./PDFDocument";
@@ -102,15 +104,7 @@ export class PDFUtils {
         
         this.pdf.moveTo(PDFConstants.LINE_START, this.pdf.cursorYCoordinate);
         this.addLineBreak(this.getTextDimensions(period).height + 5);
-    }
-
-    public handlePageBreak(componentHeight: number) : void{
-        const shouldAddPageBreak: boolean = this.pdf.cursorYCoordinate + componentHeight > PDFConstants.PAGE_HEIGHT;
-
-        if (shouldAddPageBreak) {
-            this.addPageBreak();
-        }
-    }
+    }     
 
     public renderSideBarBackground(): void {
         this.pdf.doc.setFillColor(PDFConstants.SIDE_BAR.BACKGROUND_COLOR);
@@ -127,25 +121,47 @@ export class PDFUtils {
         renderer.setTarget(target);
         renderer.render();
     }
-
-    // TODO: Deal with possible pagination
+    
     public renderSection(title: string, renderer: PDFComponentRenderer<any>, list: any[]): void {
 
         this.renderSectionSeparator(title);
 
         list.forEach((obj: any) => {
-            renderer.setTarget(obj);
+            renderer.setTarget(obj);            
+            this.handlePagination(renderer.getDimensions().height);
             renderer.render();
         });
 
         this.addLineBreak();
-    }    
+    }           
+
+    public handlePagination(height: number) {
+        if (this.pdf.cursorYCoordinate + height > PDFConstants.PAGE_HEIGHT) {            
+            const currentPage = this.pdf.doc.getCurrentPageInfo().pageNumber;
+            const pageCount = this.pdf.doc.getNumberOfPages();            
+
+            if(currentPage < pageCount){
+                this.pdf.doc.setPage(currentPage + 1);                
+            } else{
+                this.addPageBreak();
+            }
+
+            this.pdf.moveTo(PDFConstants.LINE_START, PDFConstants.VERTICAL_PADDING);
+        }
+    }
+
+    public createStubTitle(): TitleWithPeriod {        
+        return new TitleWithPeriod({
+            title: 'a',
+            startDate: moment(),
+            endDate: moment()
+        });
+    }
 
     private addPageBreak(): void {
         this.pdf.doc.addPage();
-        this.renderSideBarBackground();
-        this.pdf.moveTo(PDFConstants.LINE_START, PDFConstants.VERTICAL_PADDING);        
-    }    
+        this.renderSideBarBackground();        
+    }
 
     private formatDate(date: moment.Moment): string {        
         return date.isValid() ? date.format('YYYY') : 'Present';

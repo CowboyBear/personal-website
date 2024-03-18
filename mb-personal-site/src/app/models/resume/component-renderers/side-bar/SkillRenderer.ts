@@ -43,7 +43,7 @@ export class SkillRenderer implements PDFComponentRenderer<Skill> {
 
     public getDimensions(): Dimensions{
         // TODO: Implement this
-        return null;   
+        return new Dimensions(0, 0);
     }
     
     private renderBackground(): void {

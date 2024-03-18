@@ -32,6 +32,6 @@ export class SummaryRenderer implements PDFComponentRenderer<string> {
     
     public getDimensions(): Dimensions {
         // TODO: Implement this
-        throw new Error("Method not implemented.");
+        return new Dimensions(0, 0);
     }      
 }

@@ -30,6 +30,6 @@ export class AchievementRenderer implements PDFComponentRenderer<TitleAndDescrip
 
     public getDimensions(): Dimensions{
         // TODO: Implement this
-        return null;   
+        return new Dimensions(0, 0);
     }
 }

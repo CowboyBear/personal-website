@@ -28,6 +28,6 @@ export class LanguageRenderer implements PDFComponentRenderer<TitleAndDescriptio
 
     public getDimensions(): Dimensions{
         // TODO: Implement this
-        return null;   
+        return new Dimensions(0, 0); 
     }
 }
