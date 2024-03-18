@@ -8,11 +8,12 @@ export class Resume {
 
     public personalInformation: PersonalInformation;
     public education: Education[];
-    public summary: string;    
+    public summary: string;
     public achievements: TitleAndDescriptionPair[];
     public professionalExperiences: ProfessionalExperience[];
     public skills: Skill[];
     public languages: TitleAndDescriptionPair[];
+    public position: string;
   
     public constructor(
       fields?: {
@@ -29,6 +30,7 @@ export class Resume {
         this.professionalExperiences = fields.resumeData.professionalExperiences;
         this.skills = fields.resumeData.skills;
         this.languages = fields.resumeData.languages;
+        this.position = fields.resumeData.position;
       }  
     }
   }

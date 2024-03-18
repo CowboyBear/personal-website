@@ -3,76 +3,81 @@ import { PDFComponentRenderer } from "../PDFComponentRenderer";
 import { PDFDocument } from "src/app/models/utils/PDFDocument";
 import { PDFUtils } from "src/app/models/utils/PDFUtils";
 import { PDFConstants } from "src/app/models/utils/PDFConstants";
-import { PersonalInformation } from "src/app/models/site-content/PersonalInformation";
+import { ResumeHeader } from "../utils/ResumeHeader";
+import { SubHeaderTag } from "../utils/SubHeaderTag";
+import { SubHeaderTagRenderer } from "./SubHeaderTagRenderer";
 
-export class HeaderRenderer implements PDFComponentRenderer<PersonalInformation> {
+export class HeaderRenderer implements PDFComponentRenderer<ResumeHeader> {
     private pdf: PDFDocument;    
     private utils: PDFUtils;
-    private personalInformation: PersonalInformation;
+    private header: ResumeHeader;
+    private lineCount: number = 0;
+
+    private readonly MAX_CONTENT_WIDTH = PDFConstants.PAGE_WIDTH - PDFConstants.HORIZONTAL_PADDING;
 
     constructor(pdf: PDFDocument, utils: PDFUtils) {
         this.pdf = pdf;
         this.utils = utils;
     } 
     
-    public setTarget(obj: PersonalInformation): void {
-        this.personalInformation = obj;
+    public setTarget(obj: ResumeHeader): void {
+
+        this.header = obj;
     }
     
     public render(): void {
         this.pdf.moveTo(PDFConstants.LINE_START, PDFConstants.VERTICAL_PADDING);        
 
         this.pdf.doc.setTextColor(PDFConstants.TEXT_COLOR);
-        this.utils.writeHeader(this.personalInformation.name.toUpperCase());
+        this.utils.writeHeader(this.header.personalInformation.name.toUpperCase());
 
         this.utils.addLineBreak();
         
         this.pdf.doc.setTextColor(PDFConstants.CYAN_COLOR);
-        this.utils.writeSubHeader('Application Architect | IT Manager'); // TODO: Add this to the resume config
+        this.utils.writeSubHeader(this.header.position);
 
         this.utils.addLineBreak();
 
-        this.renderPersonalInformationSection([
-            this.personalInformation.email,
-            this.personalInformation.github,
-            'Curitiba, PR', // TODO: Add this to the resume config
-            window.location.origin
-        ]);
+        this.renderSubHeaderTags(this.header.getSubHeaderTags());
 
         this.utils.addLineBreak(PDFConstants.DEFAULT_LINE_HEIGHT * 2);
     }
     
     public getDimensions(): Dimensions {
-        // TODO: Implement this
-        throw new Error("Method not implemented.");
+        let nameDimensions = this.utils.simulateTextDimensions(this.header.personalInformation.name.toUpperCase(), 28);
+        let positionDimensions = this.utils.simulateTextDimensions(this.header.position, 16);
+        let tagsDimensions = this.getTagsDimensions();
+        
+        const componentHeight = nameDimensions.height 
+        + positionDimensions.height 
+        + tagsDimensions.height 
+        + PDFConstants.DEFAULT_LINE_HEIGHT * 4;
+        
+        return new Dimensions(
+            this.MAX_CONTENT_WIDTH,
+            componentHeight
+        );
     }   
-    
-    private renderPersonalInformationSection(lines: string[]): void {
-        const ICON_MARGIN = 7;
-        const TAGS_SPACING = 10;
-        this.pdf.setFontSize(13);
-        this.pdf.doc.setTextColor(PDFConstants.TEXT_COLOR);
 
-        lines.forEach(line => {
-            const textDimensions = this.utils.getTextDimensions(line);
-            const newXPosition = this.pdf.cursorXCoordinate + textDimensions.width + TAGS_SPACING;
-
-            this.breakLineIfRequired(newXPosition + ICON_MARGIN);
-
-            // TODO: Swap @ with the icon 
-            this.utils.writeText('@');
-            this.pdf.moveTo(this.pdf.cursorXCoordinate + ICON_MARGIN, this.pdf.cursorYCoordinate);            
-            this.utils.writeText(line);
-
-            this.pdf.moveTo(newXPosition, this.pdf.cursorYCoordinate);
-        });
-
+    private getTagsDimensions(): Dimensions {
+        return new Dimensions(
+            this.MAX_CONTENT_WIDTH,
+            this.lineCount * PDFConstants.DEFAULT_LINE_HEIGHT
+        );
     }
 
-    private breakLineIfRequired(newXPosition: number) {
-        if (newXPosition > (PDFConstants.PAGE_WIDTH - PDFConstants.HORIZONTAL_PADDING)) {
-            this.utils.addLineBreak();
-        }
+    private renderSubHeaderTags(tags: SubHeaderTag[]): void {        
+        tags.forEach(tag => {
+            let renderer: SubHeaderTagRenderer = new SubHeaderTagRenderer(this.pdf, this.utils);
+            renderer.setTarget(tag);
+
+            if(this.pdf.cursorXCoordinate + renderer.getDimensions().width > (this.MAX_CONTENT_WIDTH)){
+                this.utils.addLineBreak();
+                this.lineCount++;
+            }
+
+            renderer.render();            
+        });        
     }
 
 }

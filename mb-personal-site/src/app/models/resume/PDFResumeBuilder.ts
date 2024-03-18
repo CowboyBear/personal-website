@@ -10,6 +10,7 @@ import { HeaderRenderer } from "./component-renderers/main-content/HeaderRendere
 import { SummaryRenderer } from "./component-renderers/main-content/SummaryRenderer";
 import { ProfessionalExperienceRenderer } from "./component-renderers/main-content/ProfessionalExperienceRenderer";
 import { EducationRenderer } from "./component-renderers/main-content/EducationRenderer";
+import { ResumeHeader } from "./component-renderers/utils/ResumeHeader";
 
 export class PDFResumeBuilder {
     private resume: Resume;
@@ -62,9 +63,11 @@ export class PDFResumeBuilder {
     }
 
     public withHeader(): PDFResumeBuilder {
+        const header: ResumeHeader = new ResumeHeader(this.resume.personalInformation, this.resume.position);
+
         this.utils.renderSimpleComponent(
             new HeaderRenderer(this.pdf, this.utils),
-            this.resume.personalInformation
+            header
         )
 
         return this;
