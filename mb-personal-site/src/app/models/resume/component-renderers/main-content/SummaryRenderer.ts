@@ -2,6 +2,7 @@ import { Dimensions } from "src/app/models/utils/Dimensions";
 import { PDFComponentRenderer } from "../PDFComponentRenderer";
 import { PDFDocument } from "src/app/models/utils/PDFDocument";
 import { PDFUtils } from "src/app/models/utils/PDFUtils";
+import { PDFConstants } from "src/app/models/utils/PDFConstants";
 
 export class SummaryRenderer implements PDFComponentRenderer<string> {
     private pdf: PDFDocument;    
@@ -31,7 +32,11 @@ export class SummaryRenderer implements PDFComponentRenderer<string> {
     }
     
     public getDimensions(): Dimensions {
-        // TODO: Implement this
-        return new Dimensions(0, 0);
+        const titleHeight: number = this.utils.simulateTextDimensions(this.summary, 12).height;
+        
+        return new Dimensions(
+            PDFConstants.SIDE_BAR.TEXT_WIDTH, 
+            titleHeight + PDFConstants.DEFAULT_LINE_HEIGHT
+        );
     }      
 }

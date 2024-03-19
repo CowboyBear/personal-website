@@ -31,7 +31,6 @@ export class PDFResumeBuilder {
         this.utils = new PDFUtils(this.pdf);
     };
 
-    // TODO: Projects (?)
     public withSideBar(): PDFResumeBuilder {
         this.utils.renderSideBarBackground();
         this.utils.renderSidebarFirstPageShadow();
@@ -43,7 +42,7 @@ export class PDFResumeBuilder {
 
         this.utils.sideBar.renderSection(
             'ACHIEVEMENTS',
-            new AchievementRenderer(this.utils),
+            new AchievementRenderer(this.pdf, this.utils),
             this.resume.achievements            
         );
 
@@ -55,7 +54,7 @@ export class PDFResumeBuilder {
 
         this.utils.sideBar.renderSection(
             'LANGUAGES',
-            new LanguageRenderer(this.utils),
+            new LanguageRenderer(this.pdf, this.utils),
             this.resume.languages            
         );
 

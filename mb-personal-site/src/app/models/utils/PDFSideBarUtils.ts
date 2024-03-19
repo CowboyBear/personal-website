@@ -5,10 +5,10 @@ import { PDFDocument } from "./PDFDocument";
 import { PDFUtils } from "./PDFUtils";
 
 export class PDFSideBarUtils {
-    private pdf: PDFDocument;    
+    private pdf: PDFDocument;        
 
     constructor(pdf: PDFDocument) {
-        this.pdf = pdf;              
+        this.pdf = pdf;        
     }
     
     public addLineBreak(lineHeight?: number): void {                
@@ -62,13 +62,17 @@ export class PDFSideBarUtils {
         this.addLineBreak();
     }   
     
-    private handlePagination(height: number) {
-        let utils = new PDFUtils(this.pdf);
-        utils.handlePagination(height);
+    public simulateTextDimensions(text: string, fontSize: number): Dimensions {      
+        const utils = new PDFUtils(this.pdf);
+        return utils.simulateTextDimensions(text, fontSize);
+    }
+    
+    private handlePagination(height: number) {      
+        const utils = new PDFUtils(this.pdf);
+        utils.handlePagination(height);        
     }
 
     private writeText(text: string, alignRight?: boolean): void {                                         
-
         this.pdf.doc.text(
             text,
             this.pdf.cursorXCoordinate,

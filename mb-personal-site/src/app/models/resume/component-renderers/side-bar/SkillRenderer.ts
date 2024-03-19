@@ -9,7 +9,7 @@ import { PDFComponentRenderer } from "../PDFComponentRenderer";
 export class SkillRenderer implements PDFComponentRenderer<Skill> {
     public skill: Skill;
     
-    private utils: PDFSideBarUtils;
+    private utils: PDFSideBarUtils;    
     private pdf: PDFDocument;
     
     private readonly BACKGROUND_HEIGHT = 6;
@@ -23,7 +23,7 @@ export class SkillRenderer implements PDFComponentRenderer<Skill> {
     private readonly ROUND_FACTOR = 3;
 
     constructor(pdf: PDFDocument, utils: PDFUtils) { 
-        this.pdf = pdf;       
+        this.pdf = pdf;        
         this.utils = utils.sideBar;        
     }    
 
@@ -32,6 +32,8 @@ export class SkillRenderer implements PDFComponentRenderer<Skill> {
     }
 
     public render(): void {
+        this.pdf.moveTo(PDFConstants.SIDE_BAR.LINE_START, this.pdf.cursorYCoordinate);
+        
         this.utils.writeSubHeader(this.skill.name);
         this.utils.addLineBreak(this.utils.getTextDimensions(this.skill.name).height);
         
@@ -42,8 +44,12 @@ export class SkillRenderer implements PDFComponentRenderer<Skill> {
     }
 
     public getDimensions(): Dimensions{
-        // TODO: Implement this
-        return new Dimensions(0, 0);
+        const subHeaderHeight: number = this.utils.simulateTextDimensions(this.skill.name, 16).height;
+                
+        return new Dimensions(
+            PDFConstants.SIDE_BAR.TEXT_WIDTH, 
+            PDFConstants.DEFAULT_LINE_HEIGHT + this.BACKGROUND_HEIGHT + subHeaderHeight
+        );
     }
     
     private renderBackground(): void {
