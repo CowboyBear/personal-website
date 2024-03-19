@@ -3,14 +3,14 @@ import { PDFComponentRenderer } from "../PDFComponentRenderer";
 import { PDFDocument } from "src/app/models/utils/PDFDocument";
 import { PDFUtils } from "src/app/models/utils/PDFUtils";
 import { Position } from "src/app/models/site-content/Position";
-import { ProfessionalExperience } from "../../ProfessionalExperience";
 import { TitleWithPeriodRenderer } from "./TitleWithPeriodRenderer";
 import { DefaultTextRenderer } from "./DefaultTextRenderer";
+import { Career } from "src/app/models/site-content/Career";
 
-export class ProfessionalExperienceRenderer implements PDFComponentRenderer<ProfessionalExperience> {
+export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Career> {
     private pdf: PDFDocument;    
     private utils: PDFUtils;
-    private experience: ProfessionalExperience;
+    private career: Career;
 
     private titleRenderer: TitleWithPeriodRenderer;
     private textRenderer: DefaultTextRenderer;
@@ -27,24 +27,28 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
         this.textRenderer.setTarget('');
     }     
 
-    public setTarget(obj: ProfessionalExperience): void {
-        this.experience = obj;
+    public setTarget(obj: Career): void {
+        this.career = obj;
     }
-    
-    // TODO: Maybe, revert the order of titles: First list the company, then the positions
+        
     public render(): void {
-        this.experience.positions.forEach((position: Position) => {                        
-            this.titleRenderer.setTarget(position);
+        let title: any = {
+            title: this.career.company,
+            startDate: this.career.startDate,
+            endDate: this.career.endDate
+        }
+
+        this.titleRenderer.setTarget(title);
+        this.titleRenderer.render();
+        
+        this.career.positions.forEach((position: Position) => {                                                
             this.textRenderer.setTarget(position.description);
-                        
             this.utils.handlePagination(this.getDimensions().height);
 
-            this.titleRenderer.render();
+            this.utils.writeHighlightedSubtitle(position.title);            
+            this.utils.addLineBreak(this.utils.getTextDimensions(position.title).height + this.SUBTITLE_VERTICAL_PADDING);
 
-            this.utils.writeHighlightedSubtitle(this.experience.company);            
-            this.utils.addLineBreak(this.utils.getTextDimensions(this.experience.company).height + this.SUBTITLE_VERTICAL_PADDING);
-
-            this.utils.writeDefaultText(position.description);
+            this.textRenderer.render();            
             
             this.pdf.moveTo(
                 this.pdf.cursorXCoordinate,
@@ -58,7 +62,7 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Prof
     public getDimensions(): Dimensions {        
         const titleDimensions: Dimensions = this.titleRenderer.getDimensions();
         const descriptionDimensions: Dimensions = this.textRenderer.getDimensions();
-        const subtitleDimensions: Dimensions = this.utils.simulateTextDimensions(this.experience.company, 14);                                    
+        const subtitleDimensions: Dimensions = this.utils.simulateTextDimensions('someSubtitle', 14);                                    
 
         return new Dimensions(
             Math.max(titleDimensions.width, descriptionDimensions.width, subtitleDimensions.width),

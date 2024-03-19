@@ -5,10 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { WebSiteContentService } from './web-site-content.service';
 import { WebsiteContent } from '../models/site-content/WebsiteContent';
-import { Position } from '../models/site-content/Position';
 import { Career } from '../models/site-content/Career';
-import { ProfessionalExperience } from '../models/resume/ProfessionalExperience';
-import * as moment from "moment";
 import { TitleAndDescriptionPair } from '../models/utils/TitleAndDescriptionPair';
 import { Skill } from '../models/resume/Skill';
 
@@ -31,17 +28,23 @@ export class ResumeService {
       );
   }
 
-  private getResumeContentFromConfiguration(websiteContent: WebsiteContent, resumeData: any): Resume {
-
-    resumeData.professionalExperiences = this.getProfessionalExperience(websiteContent);
+  private getResumeContentFromConfiguration(websiteContent: WebsiteContent, resumeData: any): Resume {    
     resumeData.achievements = this.getTitleAndDescriptionObjectFromConfiguration(resumeData.achievements);
     resumeData.skills = this.getSkillsFromConfiguration(resumeData)
     resumeData.languages = this.getTitleAndDescriptionObjectFromConfiguration(resumeData.languages);
     
+    
     return new Resume({
       personalInformation: websiteContent.personalInformation,
       education: websiteContent.education,
+      career: this.getCareerInformation(websiteContent.careerInformation),
       resumeData: resumeData      
+    });
+  }
+
+  private getCareerInformation(careerInformation: Career[]): Career[] {
+    return careerInformation.sort((a, b) => { 
+      return a.startDate.isAfter(b.startDate) ? -1 : 1;
     });
   }
 
@@ -63,30 +66,6 @@ export class ResumeService {
     });
 
     return results;
-  }
+  }  
 
-  private getProfessionalExperience(websiteContent: WebsiteContent): ProfessionalExperience[] {
-    let professionalExperiences: ProfessionalExperience[] = [];
-
-    websiteContent.careerInformation.forEach((career: Career) => {
-      let experience: ProfessionalExperience = new ProfessionalExperience({
-        company: career.company,
-        positions: career.positions
-      });
-
-      experience.positions.sort((a, b) => { 
-        return this.dateDescendingComparator(a.startDate, b.startDate);
-      });
-
-      professionalExperiences.push(experience);
-    });  
-    
-    return professionalExperiences.sort((a, b) => { 
-      return this.dateDescendingComparator(a.positions[0].startDate, b.positions[1].startDate);
-    });
-  }
-
-  private dateDescendingComparator(a: moment.Moment, b: moment.Moment): number {
-    return a.isAfter(b) ? -1 : 1;
-  }
 }

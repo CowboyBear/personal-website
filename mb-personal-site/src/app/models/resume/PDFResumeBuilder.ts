@@ -85,7 +85,7 @@ export class PDFResumeBuilder {
         this.utils.renderSection(
             'PROFESSIONAL EXPERIENCE',
             new ProfessionalExperienceRenderer(this.pdf, this.utils),
-            this.resume.professionalExperiences
+            this.resume.career
         );
 
         return this;
