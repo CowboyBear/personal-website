@@ -41,7 +41,7 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Care
         this.titleRenderer.setTarget(title);
         this.titleRenderer.render();
         
-        this.career.positions.forEach((position: Position) => {                                                
+        this.career.positions.reverse().forEach((position: Position) => {                                                
             this.textRenderer.setTarget(position.description);
             this.utils.handlePagination(this.getDimensions().height);
 

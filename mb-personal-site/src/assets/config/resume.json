@@ -1,37 +1,71 @@
 {
-    "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "summary": "I'm a life long IT enthusiast, who is always looking for new challenging opportunities. After about a decade of experience as a software engineer, a couple of years as a tech lead and many projects delivered, I have, recently, decided to also dive into the fascinating worlds of software architecture, system design and IT management.",
     "position": "Application Architect | IT Manager",
     "achievements": [
         {
-            "title": "Conquistou a Jesga",
-            "description": "Timalia coisa mais fofa e gostosa da minha vida. <3"
+            "title": "Credit Monitoring Architect",
+            "description": "Became the software architect responsible for the Credit Monitoring department, with over 100 applications (~10 projects) in his portfolio."
         },
         {
-            "title": "Did something cool",
-            "description": "This is the description of the cool thing I did: Icecream sandwich + grape juice."
+            "title": "Certified Google Cloud Engineer",
+            "description": "In September/2021, passed the GCP Associate Cloud Engineer certification exam."
         },
         {
-            "title": "Did something else that's very cool",
-            "description": "This is the description of the very cool thing I did: This resume generator feature! It's kinda messy so far but will work great once it's refactored."
+            "title": "FindMe Project",
+            "description": "In the tech lead/SME role, remotely delivered and set up the \"FindMe\" project. Currently, FindMe is widely used across many ExxonMobil's offices such as: Curitiba (Brazil), Buenos Aires (Argentina), Houston (US), Singapore (Malaysia), Kuala Lumpur (Malaysia) and Melbourne (Australia)."
         },
         {
-            "title": "Did something that's not that cool",
-            "description": "This is the description of the thing that I did that is not that cool: Protein shake."
-        }        
+            "title": "Tech Support Chatbot",
+            "description": "In the tech lead/SME role, delivered a chatbot to support ExxonMobil's employees on simple and automatable, tasks. Currently, \"Summer\" supports over 300 users on a daily basis."
+        },
+        {
+            "title": "SAAT Project",
+            "description": "Prior to getting the undergraduation degree, delivered and set up a project for a famous country club in Curitiba (Clube Curitibano - Lucius Smythe headquarters). The “SAAT - Sistema de Acompanhamento de Atletas de Tênis“ was a platform  to track the development/performance and manage parental control of all junior tenis athletes in the club. At the end of the project, the club proactively issued an acceptance letter stating their satisfaction with the project."
+        }
+
     ],
-    "skills": [
+    "skills": [                
         {
-            "name": "Skill 1",
-            "level": 9
-        },
-        {
-            "name": "Skill 2",
-            "level": 2
-        },
-        {
-            "name": "Skill 3",
+            "name": "Agile Software development",
             "level": 7
-        }        
+        },
+        {
+            "name": "Backend development",
+            "level": 8
+        },
+        {
+            "name": "Frontend development",
+            "level": 6
+        },        
+        {
+            "name": "Test automation",
+            "level": 7
+        },
+        {
+            "name": "Management & Leadership",
+            "level": 8
+        },
+        {
+            "name": "System design",
+            "level": 7
+        },
+        {
+            "name": "DevSecOps",
+            "level": 6
+        },
+        
+        {
+            "name": "Networks",
+            "level": 4
+        }, 
+        {
+            "name": "Cloud computing",
+            "level": 7
+        },
+        {
+            "name": "Containers & Orchestration",
+            "level": 8
+        }               
     ],
     "languages": [
         {
