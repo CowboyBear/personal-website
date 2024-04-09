@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TechnicalKnowledge } from 'src/app/models/TechnicalKnowledge';
 import * as moment from 'moment';
+import { Education } from 'src/app/models/site-content/Education';
+import { WebsiteContent } from 'src/app/models/site-content/WebsiteContent';
 import { WebSiteContentService } from 'src/app/service/web-site-content.service';
-import { WebsiteContent } from 'src/app/models/WebsiteContent';
-import { Education } from 'src/app/models/Education';
 
 @Component({
   selector: 'app-about-me',
