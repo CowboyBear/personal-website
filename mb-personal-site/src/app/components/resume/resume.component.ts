@@ -16,6 +16,7 @@ import { ResumeService } from 'src/app/service/resume.service';
 export class ResumeComponent {  
 
   public resumeUrl: SafeResourceUrl;
+  public localPdfUrl: string;
   
   constructor(private resumeService: ResumeService, private sanitizer: DomSanitizer) {
     resumeService.get().subscribe(
@@ -28,14 +29,28 @@ export class ResumeComponent {
           .withEducation()
           .build();
 
-        const localPdfUrl: string = URL.createObjectURL(blob);        
+        this.localPdfUrl = URL.createObjectURL(blob);        
 
-        this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(localPdfUrl);
+        this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.localPdfUrl);
       }, 
       error=> {
         console.log('Error while getting resume information: ', error);
       }
     );
   }   
+
+  public downloadPDF_OnClick(): void {
+    console.log('DOWNLOAD!!!');
+
+    var a = document.createElement("a");
+    document.body.appendChild(a);    
+    a.href = this.localPdfUrl;
+    a.download = 'resume.pdf';
+    a.click();
+    
+    setTimeout(() => {      
+      document.body.removeChild(a);
+    }, 0);
+  }
 
 }
