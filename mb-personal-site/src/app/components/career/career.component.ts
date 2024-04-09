@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Career } from 'src/app/models/Career';
-import { WebsiteContent } from 'src/app/models/WebsiteContent';
+import { Career } from 'src/app/models/site-content/Career';
+import { WebsiteContent } from 'src/app/models/site-content/WebsiteContent';
 import { WebSiteContentService } from 'src/app/service/web-site-content.service';
 
 @Component({

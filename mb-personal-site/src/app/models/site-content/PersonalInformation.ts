@@ -9,6 +9,7 @@ export class PersonalInformation {
   public github: string;
   public dateOfBirth: moment.Moment;
   public nationality: string;
+  public location: string;
   public biography: string;
 
   public constructor(
@@ -20,6 +21,7 @@ export class PersonalInformation {
       email?: string,
       dateOfBirth?: string,
       nationality?: string,
+      location?: string,
       biography?: string
     }
   ) {
@@ -31,6 +33,7 @@ export class PersonalInformation {
       this.email = fields.email || this.email;
       this.dateOfBirth = moment(fields.dateOfBirth) || this.dateOfBirth;      
       this.nationality = fields.nationality || this.nationality;
+      this.location = fields.location || this.nationality;
       this.biography = fields.biography || this.biography;
     }
 

@@ -6,6 +6,7 @@ export class Position {
   public startDate: moment.Moment;
   public endDate: moment.Moment;
   public description: string;
+  public resumeDescription: string;
 
 
   public constructor(
@@ -13,7 +14,8 @@ export class Position {
       title?: string,
       startDate?: string,
       endDate?: string,
-      description?: string
+      description?: string,
+      resumeDescription?: string
     }
   ) {
     if (fields) {
@@ -21,6 +23,7 @@ export class Position {
       this.startDate = moment(fields.startDate) || this.startDate;
       this.endDate = moment(fields.endDate) || this.endDate;
       this.description = fields.description || this.description;
+      this.resumeDescription = fields.resumeDescription || this.description;
     }
   }
 

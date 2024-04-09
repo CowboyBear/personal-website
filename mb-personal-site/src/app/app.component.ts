@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { WebsiteContent } from './models/WebsiteContent';
+import { WebsiteContent } from './models/site-content/WebsiteContent';
 import { WebSiteContentService } from './service/web-site-content.service';
 
 @Component({
