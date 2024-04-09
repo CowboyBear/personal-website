@@ -39,9 +39,7 @@ export class ResumeComponent {
     );
   }   
 
-  public downloadPDF_OnClick(): void {
-    console.log('DOWNLOAD!!!');
-
+  public downloadPDF_OnClick(): void {    
     var a = document.createElement("a");
     document.body.appendChild(a);    
     a.href = this.localPdfUrl;
