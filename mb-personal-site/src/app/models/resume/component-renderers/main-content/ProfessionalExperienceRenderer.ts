@@ -42,7 +42,8 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Care
         this.titleRenderer.render();
         
         this.career.positions.reverse().forEach((position: Position) => {                                                
-            this.textRenderer.setTarget(position.description);
+            const positionDescription = position.resumeDescription ?? position.description;
+            this.textRenderer.setTarget(positionDescription);
             this.utils.handlePagination(this.getDimensions().height);
 
             this.utils.writeHighlightedSubtitle(position.title);            
@@ -52,7 +53,7 @@ export class ProfessionalExperienceRenderer implements PDFComponentRenderer<Care
             
             this.pdf.moveTo(
                 this.pdf.cursorXCoordinate,
-                this.pdf.cursorYCoordinate + this.utils.getTextDimensions(position.description).height
+                this.pdf.cursorYCoordinate + this.utils.getTextDimensions(positionDescription).height
             )            
             
             this.utils.addLineBreak(10);

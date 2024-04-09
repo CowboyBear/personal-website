@@ -253,23 +253,25 @@
           "title": "Tech Lead",
           "startDate": "2020-07-14",
           "endDate": "2021-06-30",
-          "description": "Led a team of 5 people on a project for a customer that operates on the private equity business and is currently based in Boston. Responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). For the technologies involved, check the \"Private equity customer project\" in the projects section."
+          "description": "Led a team of 5 people on a project for a customer that operates on the private equity business and is currently based in Boston. Responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). For the technologies involved, check the \"Private equity customer project\" in the projects section.",
+          "resumeDescription": "Led a team of 5 people on a project for a customer that operates on the private equity business and is currently based in Boston. Responsible not only for designing/coding but also for guiding the technical team towards the aligned technical strategy and use of coding best practices (such as SOLID, unit testing, DDD, CI/CD and a DevOps mindset). The project used an event driven architecture that heavily relied on microservices (C#/.NET core) and cloud (Azure) technologies such as Azure functions (serverless), event grid, storage queues, ARM templates, etc..."
         },
         {
           "title": "Tech Lead",
           "startDate": "2021-07-01",
           "endDate": "2021-12-01",
-          "description": "Led a team of 7 people on a project for a national (Brazilian) customer that operates on the credit protection services. Responsible for coding microservices, architecture design and also guiding the team towards a top-of-the-market agile software development experience. For the technologies involved, check the \"Credit protection services project\" in the projects section."
+          "description": "Led a team of 7 people on a project for a national (Brazilian) customer that operates on the credit protection services. Responsible for coding microservices, architecture design and also guiding the team towards a top-of-the-market agile software development experience. For the technologies involved, check the \"Credit protection services project\" in the projects section.",
+          "resumeDescription": "Led a team of 7 people on a project for a national (Brazilian) customer that operates on the credit protection services. Responsible for coding microservices, architecture design and also guiding the team towards a top-of-the-market agile software development experience. The project was a customer monitoring solution to be used both, internally and by external users. The architecture heavily relied on microservices (Spring Boot - REST and OData) and AWS Cloud technologies (Lambda, CloudFront, SQS, S3, etc...). The project was developed using a variety of technologies, the ones worth listing are: Java, Scala, Angular, Docker, Openshift, Jenkins and DocumentDB. Since quality assurance and test automation were very relevant for this customer, some frameworks were used to match their expectations: Jasmine/Karma, JUnit, RestAssured, Cucumber and Cypress."
         }
       ],
       "projects": [
         {
           "title": "Private equity customer project (Anonymized due to NDA)",
-          "description": "The project used an event driven architecture that heavily relied on microservices (C#/.NET core) and cloud (Azure) concepts/technologies such as serverless (azure functions), event grid, storage queues, etc..."
+          "description": "The project used an event driven architecture that heavily relied on microservices (C#/.NET core) and cloud (Azure) technologies such as Azure functions (serverless), event grid, storage queues, ARM templates, etc..."
         },
         {
           "title": "Credit protection services project (Anonymized due to NDA)",
-          "description": "The project is a customer monitoring solution to be used both, internally and externally. It uses an architecture that heavily relies on microservices (REST and OData) and AWS cloud technologies such as Lambda, CloudFront, SQS, S3, etc... The project was developed using a variety of technologies, the ones worth listing are: Java, Scala, Angular, Docker, Openshift, Jenkins and MongoDB. Quality assurance and test automation are very relevant matters for this customer, so some technologies are being applied to match their expectations: Jasmine/Karma, JUnit, RestAssured, Cucumber, Cypress."
+          "description": "The project was a customer monitoring solution to be used both, internally and by external users. The architecture heavily relied on microservices (Spring Boot - REST and OData) and AWS Cloud technologies (Lambda, CloudFront, SQS, S3, etc...). The project was developed using a variety of technologies, the ones worth listing are: Java, Scala, Angular, Docker, Openshift, Jenkins and DocumentDB. Since quality assurance and test automation were very relevant for this customer, some frameworks were used to match their expectations: Jasmine/Karma, JUnit, RestAssured, Cucumber and Cypress."
         }
       ],
       "technologies": [
@@ -298,13 +300,15 @@
           "title": "Tech Lead",
           "startDate": "2021-12-01",
           "endDate": "2022-06-30",
-          "description": "Led teams of approximately 9 people on very strategic projects. My main responsibilities included translating the business requirements into technical requirements, designing/coding the technical solutions and, of course, guiding the teams towards technical excelence by using of project development and agile best practices. For the technologies involved, check the projects section."
+          "description": "Led teams of approximately 9 people on very strategic projects. My main responsibilities included translating the business requirements into technical requirements, designing/coding the technical solutions and, of course, guiding the teams towards technical excelence by using project development and agile best practices. For the technologies involved, check the projects section.",
+          "resumeDescription": "Led teams of approximately 9 people on very strategic projects. Main responsibilities included translating the business requirements into technical requirements, designing/coding the technical solutions and, of course, guiding the teams towards technical excelence by using project development and agile best practices. In this position, worked with a great variety of technologies/frameworks, the ones worth mentioning are: Java (Spring Boot), Docker/Kubernetes (EKS), AWS services (SQS, SNS, S3, CloudFront, DocumentDB, etc...), Cypress, JUnit, RestAssured. For a full list of technologies/frameworks, please visit the career page on my website (link on the resume header)."
         },
         {
           "title": "Application Architect",
           "startDate": "2022-06-30",
           "endDate": null,
-          "description": "Responsible for designing technical solutions, conducting PoC's, defining the technical strategy and maintaining a portifolio of over 100 applications distributed across about 10 projects and maintained by 4 separate teams. Also, since in Serasa the Application Architect is equivalent to a \"Technical IT Manager\", I'm also responsible to act as an internal consultant and manage the tech leads for each team from a functional standpoint."
+          "description": "Responsible for designing technical solutions, conducting PoC's, defining the technical strategy and maintaining a portfolio of over 100 applications distributed across about 10 projects and maintained by 4 separate teams. Also, since in Serasa the Application Architect is equivalent to a \"Technical IT Manager\", I'm also responsible to act as an internal consultant and manage the tech leads for each team from a functional standpoint.",
+          "resumeDescription": "Responsible for designing technical solutions, conducting PoC's, defining the technical strategy and maintaining a portfolio of over 100 applications distributed across about 10 projects and maintained by 4 separate teams. Also, since in Serasa the Application Architect is equivalent to a \"Technical IT Manager\", is also responsible to act as an internal consultant and manage the tech leads for each team from a functional standpoint. In this position, worked with a great variety of technologies/frameworks, the ones worth mentioning are: Java (Spring Boot), Docker/Kubernetes (EKS), AWS services (SQS, SNS, S3, CloudFront, DocumentDB, etc...), Cypress, JUnit, RestAssured. For a full list of technologies/frameworks, please visit the career page on my website (link on the resume header)."
         }
       ],
       "projects": [        
@@ -322,7 +326,7 @@
         },
         {
           "title": "Ascend Insights (Legacy)",
-          "description": "This is a legacy product that is used to provide insights for the user about their customer portifolio through a series of credit reports available on the platform. My biggest achievement on this project was to recover the quality of the project as whole since the development team was struggling with agile and legacy code best practices. When I arrived, the code was very messy, untested and the team didn't have clarity of how to deal with a legacy application that big. When I left, the code quality improved significantly, was almost 80% tested (unit and integration tests) and the team had a concise roadmap of the next features to tackle."
+          "description": "This is a legacy product that is used to provide insights for the user about their customer portfolio through a series of credit reports available on the platform. My biggest achievement on this project was to recover the quality of the project as whole since the development team was struggling with agile and legacy code best practices. When I arrived, the code was very messy, untested and the team didn't have clarity of how to deal with a legacy application that big. When I left, the code quality improved significantly, was almost 80% tested (unit and integration tests) and the team had a concise roadmap of the next features to tackle."
         },
         {
           "title": "Other legacy aplications",
