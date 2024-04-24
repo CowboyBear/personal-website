@@ -1,14 +1,24 @@
 <div class="col s12 center-align" *ngIf="resumeUrl">    
-    <div class="hide-on-small-only">
-        <iframe [src]="resumeUrl" type="application/pdf" width="100%" style="height: 100vh;"></iframe>    
-    </div>
-    <div class="show-on-small">
+    <div class="hide-on-med-and-up">
         <h1>
             Mobile browsers don't like PDF previews :(
         </h1> 
         <br/>
         <h2>
             But don't worry, I got you! Click <a (click)="downloadPDF_OnClick()"> here</a> to download the resume.
+        </h2>
+    </div>
+   
+    <div class="hide-on-small-only">
+        <iframe [src]="resumeUrl" type="application/pdf" width="100%" style="height: 100vh;"></iframe>    
+        
+        <br/>
+        <h1>
+            Problems with the PDF preview?
+        </h1> 
+        <br/>
+        <h2>
+            Don't worry, I got you! Click <a (click)="downloadPDF_OnClick()"> here</a> to download the resume.
         </h2>
     </div>
 </div>
